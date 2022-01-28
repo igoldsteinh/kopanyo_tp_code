@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+        
+    <data
+ascertained = "true"
+excludeto = "4"
+id="varsites_snp10_lineage_4_cluster_8"
+spec="Alignment"
+name="alignment">
+                                
+        <sequence id="seq_BTB-1015_2014-05-08" spec="Sequence" taxon="BTB-1015_2014-05-08" totalcount="4" value="acgtcaggctcgtgcaaaggcccctccttgccggcaggactttgcgttacctcccggcgcgtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcgccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttgggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatggggggttggggcgatgcgccagaggggtgcggcgacatatccgcgtcccccgcgggtccgcgagagagg"/>
+                                
+        <sequence id="seq_BTB-1022_2014-05-02" spec="Sequence" taxon="BTB-1022_2014-05-02" totalcount="4" value="acgtcgggcttgtgcaaaggcccccccttgccggcaggaccttgcgttatctcccggtgggtctgtggagggcagtggtggcgtatgcggggaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgagacctaggtgggaccctacgtgccggggcacaggcttaggcacgcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccccgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1036_2014-05-23" spec="Sequence" taxon="BTB-1036_2014-05-23" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagcggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggtgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcagcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1052_2014-06-03" spec="Sequence" taxon="BTB-1052_2014-06-03" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccctgccggcaggaccttgcgttacctcccggtggttctgtggagggcaatggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggagccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtacggcggcatatccgcgttccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1081_2014-06-22" spec="Sequence" taxon="BTB-1081_2014-06-22" totalcount="4" value="acgtcaggcttctgcaaaggcccctccttgccgccaggaccttgcgttaccttccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacctgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccagaggggtgcgccggcatatccgcgccccgcgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-1101_2014-07-03" spec="Sequence" taxon="BTB-1101_2014-07-03" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttcccggcaggaccttgcgttacctcccggtgggtctgtggagggcagttgtggcgcatgtgggaaagcgcgggcggggcatcggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggagcctacgtgccgcggcacaggcttagtcaggcgctccactagtgagaccaccgcgaagtgacgcccccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1104_2014-07-07" spec="Sequence" taxon="BTB-1104_2014-07-07" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggaaggacctggcgttacttcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggtaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggattaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcagcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1231_2014-09-18" spec="Sequence" taxon="BTB-1231_2014-09-18" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatacgggaaagtacgggcggggcaccggccggactcccatcgtcctgatacctgcggacccgggaccgaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1234_2014-09-19" spec="Sequence" taxon="BTB-1234_2014-09-19" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttacgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcaccggccggactcccatcgtcttgatacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1262_2014-09-24" spec="Sequence" taxon="BTB-1262_2014-09-24" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcctcacctcccggtgggtctgtggagggcagtgggggcgcatgcgggaaagcacgggcggggcaccggccggaatcccatcgtcctggtacctgcggacccgggacctaggtggggccctacgtgccggggcacaggcttaggcaggcgctccactagtcagaccaccgcggagtgacgccaccgagtaatagggggttcgggcaatgcgccagaggggtgcggcggcatatccgcgtcccccgccggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1271_2014-09-26" spec="Sequence" taxon="BTB-1271_2014-09-26" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccctgcgttacctcccggtgggcctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccgtactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacctgccggggcacaggcttaggcaggcactccactagtgagaccaccgcggagtgacgccaccgagtaagagggggttggggcgatgcgccagaggggtgcggcggcatatacgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1285_2014-10-03" spec="Sequence" taxon="BTB-1285_2014-10-03" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcgggccaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccagggcacaagcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggagcgatgcgccagaggggtgcggcggcatatcggcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1349_2014-11-12" spec="Sequence" taxon="BTB-1349_2014-11-12" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgccttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcccggtacctgcggacccgggacctaggtggggccctacgtgccggggcacaggctcaggcagtcgctccactagtcagacgaccccggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcacatccgcgtcccccgccggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1370_2014-11-19" spec="Sequence" taxon="BTB-1370_2014-11-19" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgtcggcaggaccttgcgttacctcccggtgggtccgtggcgggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacgcgggacctgggtgggaccctacgtgccggggcacaggcttaggcgggcgctccactagtgagaccaccgcggagtgacgccaccgggtaatagggggttggggcgatgcgctagaggggcgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-137_2012-12-09" spec="Sequence" taxon="BTB-137_2012-12-09" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgctggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaaccacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagcactagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1383_2014-11-24" spec="Sequence" taxon="BTB-1383_2014-11-24" totalcount="4" value="acgtcaggcttctgtaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagtgcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtactggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccaaaggggtgcgccggcatatccgcgccctccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-1396_2014-11-26" spec="Sequence" taxon="BTB-1396_2014-11-26" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccgccaggaccttgcgttacctcctggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgtggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1402_2014-11-27" spec="Sequence" taxon="BTB-1402_2014-11-27" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgccggaaagcacgggcggggcaccggtcggactcccatcgtcctgggacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatctccgcgtcccccgcgggtccgcgagggcgg"/>
+                                
+        <sequence id="seq_BTB-1427_2014-12-18" spec="Sequence" taxon="BTB-1427_2014-12-18" totalcount="4" value="acgtcaggcttctgtaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagtgcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccagaggggtgcgccggcatatccgcgccccccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-1434_2014-12-30" spec="Sequence" taxon="BTB-1434_2014-12-30" totalcount="4" value="acgtcaagcctgtgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcggcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcgcaggcttaagcaggcgctcaactagtgagaccaccgcggagtgacgccacggagtaatagggagttggggcgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggttcgcgaaggagg"/>
+                                
+        <sequence id="seq_BTB-1435_2014-12-29" spec="Sequence" taxon="BTB-1435_2014-12-29" totalcount="4" value="acgtcaggcttgtgcaaaggccccttcttcccggcaggaccttgcgttacctcccggtgggtctgtggagggcagttgtggcgcatgcgggaaagcacgggcggggcatcggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggtgtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1472_2015-01-15" spec="Sequence" taxon="BTB-1472_2015-01-15" totalcount="4" value="acgtcaggcttgtgcgaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagggacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1482_2015-01-16" spec="Sequence" taxon="BTB-1482_2015-01-16" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgtcccactagtgagaccaccgcggtgtgacaccacggagtaatagggggttggggcggtgcgccagaggggtgcggcggcatatccgcgtcccccgcgagtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-148_2012-12-14" spec="Sequence" taxon="BTB-148_2012-12-14" totalcount="4" value="acgtcaggcttctgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagtgcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccagaggggtgcgccggcatatccgcgccccccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-1492_2015-01-26" spec="Sequence" taxon="BTB-1492_2015-01-26" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctccccgtgggtctgtggagggcagtgatggcgcatgcgggaaagcacgggcggggcaccggccggtctcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccgggtcacaggcttaggcaggcgctccactagcgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgaggaagg"/>
+                                
+        <sequence id="seq_BTB-1506_2015-02-04" spec="Sequence" taxon="BTB-1506_2015-02-04" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgaggccaccgcggagtgatgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1542_2015-02-17" spec="Sequence" taxon="BTB-1542_2015-02-17" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgctggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaggcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcgtaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagcactagggggttggggcgatgcgccagaggggtgcggtggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1558_2015-03-03" spec="Sequence" taxon="BTB-1558_2015-03-03" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccagactcccatcgtcctggtacctgcggacccgggacttaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgacgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1577_2015-03-10" spec="Sequence" taxon="BTB-1577_2015-03-10" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggaccctggccctaggtgggacccgacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtggcgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1579_2015-03-13" spec="Sequence" taxon="BTB-1579_2015-03-13" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctatggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtctcccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1607_2015-03-26" spec="Sequence" taxon="BTB-1607_2015-03-26" totalcount="4" value="acgtcaggcttctgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccagaggggtgcgccggcatatccgcgccccccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-161_2013-01-07" spec="Sequence" taxon="BTB-161_2013-01-07" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccgccaggaccttgcgttacctcctggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggtcggcgcgggagg"/>
+                                
+        <sequence id="seq_BTB-1638_2015-04-27" spec="Sequence" taxon="BTB-1638_2015-04-27" totalcount="4" value="acgtcaggcttgtgcaaagggccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggagcaccggccggactcccatcgtcctggtacctgcggccccgggacctaggtgggaccctacgtgctggtgcacgggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggctggggcgatgcgtcagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1710_2015-06-15" spec="Sequence" taxon="BTB-1710_2015-06-15" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtttgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcctcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcatagacttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1771_2015-07-27" spec="Sequence" taxon="BTB-1771_2015-07-27" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccgccaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccagggcacaggcttaagcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatcggcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1783_2015-08-04" spec="Sequence" taxon="BTB-1783_2015-08-04" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1788_2015-07-30" spec="Sequence" taxon="BTB-1788_2015-07-30" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcatgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggtcggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1789_2015-08-03" spec="Sequence" taxon="BTB-1789_2015-08-03" totalcount="4" value="acgtcagggttgtgcaaagtcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtgacgcatgcggaagagcacgggcggggcaccggccggactcccatcgtcctggtaccggcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccattagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1803_2015-08-19" spec="Sequence" taxon="BTB-1803_2015-08-19" totalcount="4" value="acgtcaggcttgtgcaaaggctcctccttgccggcaggaccttgcgttacctcccggtgggtctgtagagggcggtggtggcgcctgcgggaaagcacgggcggggcaccagctggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccaccgagtgataggggattggggcgatacgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1806_2015-08-19" spec="Sequence" taxon="BTB-1806_2015-08-19" totalcount="4" value="acgtcagccttgtacaaaggccgctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggccctaggtgggacccgacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1815_2015-08-19" spec="Sequence" taxon="BTB-1815_2015-08-19" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttaccccccggtgggtctgtgaagggcagtggtggcacatgcgggaaagcacgcgcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgagaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccaggggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggaag"/>
+                                
+        <sequence id="seq_BTB-1818_2015-08-26" spec="Sequence" taxon="BTB-1818_2015-08-26" totalcount="4" value="acgtgaggcttgtgcaaaggcccctccttgccggcaggaccttgcgatacctcccggtgggtctgtggagggcagttgtggcgcatgcgggaaagcacgggcggggcatcgaccggactcccatcgtcctggtacctgcggacccgggatctaggtggtaccctacgtgccggggcacaggcttaggcaggcgctccactagtgaaaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgagggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1932_2015-11-05" spec="Sequence" taxon="BTB-1932_2015-11-05" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggaaggcagtggtggcgcacgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcgaacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactaatgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatacccgcgccccccacgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1941_2015-11-06" spec="Sequence" taxon="BTB-1941_2015-11-06" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggccctaggtgggacccgacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1957_2015-11-16" spec="Sequence" taxon="BTB-1957_2015-11-16" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgtgaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgtggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-1965_2015-11-19" spec="Sequence" taxon="BTB-1965_2015-11-19" totalcount="4" value="acgtcagccttggacaaaggccgctcctggcccgctagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggccctaggtgggacccgacgtgccggggcacaggcttaggcaggcgctccgctggtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-198_2013-01-30" spec="Sequence" taxon="BTB-198_2013-01-30" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcaccggccggactcccatcgtcctggtacctacggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-2031_2016-01-08" spec="Sequence" taxon="BTB-2031_2016-01-08" totalcount="4" value="acgtcaggcttgtgcaaaagcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggtggggcaccggccggactcccattgtcctggtacctgcggacccgggacctaggtgggaccctacggtccggggcacaggcttaggcaggcgctccactagtgagaccatcgcggagtgacgccacggagtaatagggggttggggcgatgccccagaggggtgcggcggtatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-2055_2016-01-25" spec="Sequence" taxon="BTB-2055_2016-01-25" totalcount="4" value="acgtcaggcttgtgcaaaggcccttccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgctgacccgggacctaggtgggaccctacgtgccggggcacaggcttaggtaggcgctccactagtgagaccgccgcggagtgacgccacggaataatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcaagggagg"/>
+                                
+        <sequence id="seq_BTB-2066_2016-02-01" spec="Sequence" taxon="BTB-2066_2016-02-01" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccagactcccatcgtcctggtacctgcggacccgggacttaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgacgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-2122_2016-03-15" spec="Sequence" taxon="BTB-2122_2016-03-15" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcaccggccggactcccatcgtcctgatacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctgcgctagtgagaccaccgcggaatgacgccaccgagtaatagggggttggggcgatgtgccagaggggtgcggcggcatatccgagtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-2133_2016-03-24" spec="Sequence" taxon="BTB-2133_2016-03-24" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttcccggcaggaccttgcgttacctcccggtgggtctgtggagggcagttgtggcgcatgcgggaaagcacgggcgaggcatcggccggactcccctcgtcctagtacctgcggacccggaacctaggtgggaccctacgtggcggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgtcaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcggatccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-218_2013-02-14" spec="Sequence" taxon="BTB-218_2013-02-14" totalcount="4" value="acgtcaggcttctgcaaaggcccctccttgccgccaggaccttgggttgcctcccggtgggtctgtggagggtagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaatagggggttgggacgatgcgccggaggggtgcgccggcatatccgcgccccccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-248_2013-02-28" spec="Sequence" taxon="BTB-248_2013-02-28" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcgggccaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccagggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatcggcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-26_2012-09-20" spec="Sequence" taxon="BTB-26_2012-09-20" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtttgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcctcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcatagacttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcatcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-285_2013-03-27" spec="Sequence" taxon="BTB-285_2013-03-27" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgccgagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-319_2013-04-18" spec="Sequence" taxon="BTB-319_2013-04-18" totalcount="4" value="acgtcaggcttgtgcacaggcccctctttgccggcagggtcttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggacctccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgcaaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-357_2013-05-22" spec="Sequence" taxon="BTB-357_2013-05-22" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctatggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-369_2013-05-25" spec="Sequence" taxon="BTB-369_2013-05-25" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttcccggcaggaccttgcgttacctcccggtgggtctgtggagggcagttgtggcgcatgcgggaaagcacgggcggggcatcggccggactcccatcgtcctggtatctgcggacccgggacctaggtgggacgctacgtgccggggcacaggcttaggcaggcgctccaccagtgagaccacagcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-402_2013-06-20" spec="Sequence" taxon="BTB-402_2013-06-20" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttacgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcaccggccggactcccatcgtcttgatacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-403_2013-06-20" spec="Sequence" taxon="BTB-403_2013-06-20" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccagactcccatcgtcctggtacctgcggacccgggacttaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgacgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-411_2013-06-21" spec="Sequence" taxon="BTB-411_2013-06-21" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcagcaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtaggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagc"/>
+                                
+        <sequence id="seq_BTB-429_2013-07-05" spec="Sequence" taxon="BTB-429_2013-07-05" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtaggtctgtggagggcagtggtggcgcatgcgggaaagcacggaccgggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagagcaccgcggagtaacgccaccgagtaatagggggttggggcgatgcgccagagggatgcggcggcctatccgcgtcccccgcggggccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-431_2013-07-03" spec="Sequence" taxon="BTB-431_2013-07-03" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgctggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccaacgtcctggtacctgcggacccgggacctaggtgggaccctaggtgccggggaacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagcactagggggttggggtgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-554_2013-09-20" spec="Sequence" taxon="BTB-554_2013-09-20" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgctggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcctatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagcactagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-634_2013-10-24" spec="Sequence" taxon="BTB-634_2013-10-24" totalcount="4" value="acgtcaagcctgtgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagggcagtggtagcgcatgcgggaaagcacgggcggggcaccggccggactcccatcggcctggtgcctgcggacccgggacctaagtgggaccctacgtgccggggcgcaggcttaagcaggcgctcaactagtgagaccaccgcggagtgacgccaaggagtaatagtgagttggggcgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggttcgcgaaggagg"/>
+                                
+        <sequence id="seq_BTB-670_2013-10-30" spec="Sequence" taxon="BTB-670_2013-10-30" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcgggccaccggccggactcccatcgtcctggtacttgcggacccgggacctaggcgggaccctacgtgccagggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatcggcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-683_2013-11-13" spec="Sequence" taxon="BTB-683_2013-11-13" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtttgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcctcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcatagacttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-71_2012-10-26" spec="Sequence" taxon="BTB-71_2012-10-26" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtaggtctgtggagggcagtggtggcgcatgcgggaaagcacggaccgggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagagcaccgcggagtaacgccaccgagtaatagggggttggggcgatgcgccagagggatgcggcggcctatccgcgtcccccgcggggccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-727_2013-11-22" spec="Sequence" taxon="BTB-727_2013-11-22" totalcount="4" value="acgtcaggcttctgcaaaggcccctccttgccgccaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacaggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaagcaggcgctccactagtgggaccaccgcggagtgacgccacggagtaataggcggttgggacgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggtccatgagggagg"/>
+                                
+        <sequence id="seq_BTB-742_2013-11-29" spec="Sequence" taxon="BTB-742_2013-11-29" totalcount="4" value="acgtcaggcttgtgcaatggcccctccttcccggcaggaccttgcgttacctcccgatgggtctgcggagggcagttgtggcgcatgcgggaaagcacgggcggggcatcggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccgtccgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccaccaagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-743_2013-12-04" spec="Sequence" taxon="BTB-743_2013-12-04" totalcount="4" value="acgtcaagcctgtgcaaaggcccctccttgccgccaggaccttgcgttacctctcggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcggcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcgcaggcttaagcaggcgctcaactagtgagaccaccgcggagtgacgccacggagtaatagggagttggggcgatgcgccagaggggtgcggcggcatatccgcgccccccgcgggttcgcgaaggagg"/>
+                                
+        <sequence id="seq_BTB-745_2013-12-05" spec="Sequence" taxon="BTB-745_2013-12-05" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggccctaggtgggacccgacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtggcgccaccgagtaatagggggttggggcgatgcgccagaggggtgtggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-747_2013-12-04" spec="Sequence" taxon="BTB-747_2013-12-04" totalcount="4" value="acgtcagccttgtgcaaaggcccctccttgcccgcaagaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagtacgggcggggcactggccggactcccatcgtcctgatacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccgctagtgagaccaccgcggagtgacgccaccgagtaatagggggttggggcgatgcgccagaagggtgcggcggcatatccgcgtcccctgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-76_2012-10-30" spec="Sequence" taxon="BTB-76_2012-10-30" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcgggccaccggccggactcccatcgtcctggtacttgcggacccgggacctaggtgggaccctacgtgccagggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatcggcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-799_2014-01-07" spec="Sequence" taxon="BTB-799_2014-01-07" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-82_2012-11-05" spec="Sequence" taxon="BTB-82_2012-11-05" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctatggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-83_2012-11-05" spec="Sequence" taxon="BTB-83_2012-11-05" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctagctgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgaggccaccgcggagtgatgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-881_2014-02-19" spec="Sequence" taxon="BTB-881_2014-02-19" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgccggcaggacctggcgttacctcccggtgggtctgtggaggtcagtggtggtgcatgcgggaaagcacgggcggggcaccggccggactcacatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcataggcttaggcaggcgctccactagtgaggccaccgcggagtgatgccacggagtaataaggggttgaggcgatgcgccagagcggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-937_2014-03-21" spec="Sequence" taxon="BTB-937_2014-03-21" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcctcacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtggggccctacgtgccggggcacaggcttaggcaggcgctccactagtcagaccaccgcggagtgacgccaccgagtaatagggggttcgggcaatgcgccagaggggtgcggcggcatatccgcgtcccccgccggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-967_2014-04-07" spec="Sequence" taxon="BTB-967_2014-04-07" totalcount="4" value="acgtcaggcttgtgcaaaggcccctccttgccggcaggaccttgcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccatcgtcctggtacctgcggacccgggacctaggtgggaccctacgtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagtaatagggggttggggcgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                                
+        <sequence id="seq_BTB-968_2014-04-08" spec="Sequence" taxon="BTB-968_2014-04-08" totalcount="4" value="acgtcagggttgtgcaaaggcccctccttgctggcaggacctggcgttacctcccggtgggtctgtggagggcagtggtggcgcatgcgggaaagcacgggcggggcaccggccggactcccaacgtcctggtacctgcggacccgggacctaggtgggaccctaggtgccggggcacaggcttaggcaggcgctccactagtgagaccaccgcggagtgacgccacggagcactagggggttggggtgatgcgccagaggggtgcggcggcatatccgcgtcccccgcgggtccgcgagggagg"/>
+                            
+    </data>
+        
+
+
+    
+
+
+    
+
+    <map name="Uniform" >beast.math.distributions.Uniform</map>
+    
+    <map name="Exponential" >beast.math.distributions.Exponential</map>
+    
+    <map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+    
+    <map name="Normal" >beast.math.distributions.Normal</map>
+    
+    <map name="Beta" >beast.math.distributions.Beta</map>
+    
+    <map name="Gamma" >beast.math.distributions.Gamma</map>
+    
+    <map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+    
+    <map name="prior" >beast.math.distributions.Prior</map>
+    
+    <map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+    
+    <map name="OneOnX" >beast.math.distributions.OneOnX</map>
+    
+    <run id="mcmc" spec="MCMC" chainLength="10000000">
+            
+        <state id="state" spec="State" storeEvery="5000">
+                    
+            <tree id="Tree.t:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.tree.Tree" name="stateNode">
+                            
+                <trait id="dateTrait.t:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.tree.TraitSet" dateFormat="yyyy-MM-dd" traitname="date" value="BTB-1015_2014-05-08=2014-05-08,BTB-1022_2014-05-02=2014-05-02,BTB-1036_2014-05-23=2014-05-23,BTB-1052_2014-06-03=2014-06-03,BTB-1081_2014-06-22=2014-06-22,BTB-1101_2014-07-03=2014-07-03,BTB-1104_2014-07-07=2014-07-07,BTB-1231_2014-09-18=2014-09-18,BTB-1234_2014-09-19=2014-09-19,BTB-1262_2014-09-24=2014-09-24,BTB-1271_2014-09-26=2014-09-26,BTB-1285_2014-10-03=2014-10-03,BTB-1349_2014-11-12=2014-11-12,BTB-137_2012-12-09=2012-12-09,BTB-1370_2014-11-19=2014-11-19,BTB-1383_2014-11-24=2014-11-24,BTB-1396_2014-11-26=2014-11-26,BTB-1402_2014-11-27=2014-11-27,BTB-1427_2014-12-18=2014-12-18,BTB-1434_2014-12-30=2014-12-30,BTB-1435_2014-12-29=2014-12-29,BTB-1472_2015-01-15=2015-01-15,BTB-148_2012-12-14=2012-12-14,BTB-1482_2015-01-16=2015-01-16,BTB-1492_2015-01-26=2015-01-26,BTB-1506_2015-02-04=2015-02-04,BTB-1542_2015-02-17=2015-02-17,BTB-1558_2015-03-03=2015-03-03,BTB-1577_2015-03-10=2015-03-10,BTB-1579_2015-03-13=2015-03-13,BTB-1607_2015-03-26=2015-03-26,BTB-161_2013-01-07=2013-01-07,BTB-1638_2015-04-27=2015-04-27,BTB-1710_2015-06-15=2015-06-15,BTB-1771_2015-07-27=2015-07-27,BTB-1783_2015-08-04=2015-08-04,BTB-1788_2015-07-30=2015-07-30,BTB-1789_2015-08-03=2015-08-03,BTB-1803_2015-08-19=2015-08-19,BTB-1806_2015-08-19=2015-08-19,BTB-1815_2015-08-19=2015-08-19,BTB-1818_2015-08-26=2015-08-26,BTB-1932_2015-11-05=2015-11-05,BTB-1941_2015-11-06=2015-11-06,BTB-1957_2015-11-16=2015-11-16,BTB-1965_2015-11-19=2015-11-19,BTB-198_2013-01-30=2013-01-30,BTB-2031_2016-01-08=2016-01-08,BTB-2055_2016-01-25=2016-01-25,BTB-2066_2016-02-01=2016-02-01,BTB-2122_2016-03-15=2016-03-15,BTB-2133_2016-03-24=2016-03-24,BTB-218_2013-02-14=2013-02-14,BTB-248_2013-02-28=2013-02-28,BTB-26_2012-09-20=2012-09-20,BTB-285_2013-03-27=2013-03-27,BTB-319_2013-04-18=2013-04-18,BTB-357_2013-05-22=2013-05-22,BTB-369_2013-05-25=2013-05-25,BTB-402_2013-06-20=2013-06-20,BTB-403_2013-06-20=2013-06-20,BTB-411_2013-06-21=2013-06-21,BTB-429_2013-07-05=2013-07-05,BTB-431_2013-07-03=2013-07-03,BTB-554_2013-09-20=2013-09-20,BTB-634_2013-10-24=2013-10-24,BTB-670_2013-10-30=2013-10-30,BTB-683_2013-11-13=2013-11-13,BTB-71_2012-10-26=2012-10-26,BTB-727_2013-11-22=2013-11-22,BTB-742_2013-11-29=2013-11-29,BTB-743_2013-12-04=2013-12-04,BTB-745_2013-12-05=2013-12-05,BTB-747_2013-12-04=2013-12-04,BTB-76_2012-10-30=2012-10-30,BTB-799_2014-01-07=2014-01-07,BTB-82_2012-11-05=2012-11-05,BTB-83_2012-11-05=2012-11-05,BTB-881_2014-02-19=2014-02-19,BTB-937_2014-03-21=2014-03-21,BTB-967_2014-04-07=2014-04-07,BTB-968_2014-04-08=2014-04-08">
+                                    
+                    <taxa id="TaxonSet.varsites_snp10_lineage_4_cluster_8" spec="TaxonSet">
+                                            
+                        <alignment idref="varsites_snp10_lineage_4_cluster_8"/>
+                                        
+                    </taxa>
+                                
+                </trait>
+                            
+                <taxonset idref="TaxonSet.varsites_snp10_lineage_4_cluster_8"/>
+                        
+            </tree>
+                    
+            <parameter id="clockRate.c:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" name="stateNode">0.0013953</parameter>
+                    
+            <parameter id="kappa.s:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+                    
+            <parameter id="popSize.t:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" name="stateNode">0.3</parameter>
+                    
+            <parameter id="freqParameter.s:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
+                
+        </state>
+            
+        <init id="RandomTree.t:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:varsites_snp10_lineage_4_cluster_8" taxa="@varsites_snp10_lineage_4_cluster_8">
+                    
+            <populationModel id="ConstantPopulation0.t:varsites_snp10_lineage_4_cluster_8" spec="ConstantPopulation">
+                            
+                <parameter id="randomPopSize.t:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+                        
+            </populationModel>
+                
+        </init>
+            
+        <distribution id="posterior" spec="util.CompoundDistribution">
+                    
+            <distribution id="prior" spec="util.CompoundDistribution">
+                            
+                <distribution id="CoalescentConstant.t:varsites_snp10_lineage_4_cluster_8" spec="Coalescent">
+                                    
+                    <populationModel id="ConstantPopulation.t:varsites_snp10_lineage_4_cluster_8" spec="ConstantPopulation" popSize="@popSize.t:varsites_snp10_lineage_4_cluster_8"/>
+                                    
+                    <treeIntervals id="TreeIntervals.t:varsites_snp10_lineage_4_cluster_8" spec="TreeIntervals" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8"/>
+                                
+                </distribution>
+                            
+                <prior id="ClockPrior.c:varsites_snp10_lineage_4_cluster_8" name="distribution" x="@clockRate.c:varsites_snp10_lineage_4_cluster_8">
+                                    
+                    <Uniform id="Uniform.0" lower="1.4E-4" name="distr" upper="0.0069767"/>
+                                
+                </prior>
+                            
+                <prior id="FrequenciesPrior.s:varsites_snp10_lineage_4_cluster_8" name="distribution" x="@freqParameter.s:varsites_snp10_lineage_4_cluster_8">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.1" name="distr">
+                                            
+                        <parameter id="RealParameter.3" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.4" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                            
+                <prior id="KappaPrior.s:varsites_snp10_lineage_4_cluster_8" name="distribution" x="@kappa.s:varsites_snp10_lineage_4_cluster_8">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                                            
+                        <parameter id="RealParameter.1" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.2" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                            
+                <prior id="PopSizePrior.t:varsites_snp10_lineage_4_cluster_8" name="distribution" x="@popSize.t:varsites_snp10_lineage_4_cluster_8">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                                            
+                        <parameter id="RealParameter.5" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.6" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                        
+            </distribution>
+                    
+            <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+                            
+                <distribution id="treeLikelihood.varsites_snp10_lineage_4_cluster_8" spec="ThreadedTreeLikelihood" data="@varsites_snp10_lineage_4_cluster_8" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8">
+                                    
+                    <siteModel id="SiteModel.s:varsites_snp10_lineage_4_cluster_8" spec="SiteModel">
+                                            
+                        <parameter id="mutationRate.s:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                                            
+                        <parameter id="gammaShape.s:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                                            
+                        <parameter id="proportionInvariant.s:varsites_snp10_lineage_4_cluster_8" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                                            
+                        <substModel id="hky.s:varsites_snp10_lineage_4_cluster_8" spec="HKY" kappa="@kappa.s:varsites_snp10_lineage_4_cluster_8">
+                                                    
+                            <frequencies id="estimatedFreqs.s:varsites_snp10_lineage_4_cluster_8" spec="Frequencies" frequencies="@freqParameter.s:varsites_snp10_lineage_4_cluster_8"/>
+                                                
+                        </substModel>
+                                        
+                    </siteModel>
+                                    
+                    <branchRateModel id="StrictClock.c:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:varsites_snp10_lineage_4_cluster_8"/>
+                                
+                </distribution>
+                        
+            </distribution>
+                
+        </distribution>
+            
+        <operator id="StrictClockRateScaler.c:varsites_snp10_lineage_4_cluster_8" spec="ScaleOperator" parameter="@clockRate.c:varsites_snp10_lineage_4_cluster_8" scaleFactor="0.75" weight="3.0"/>
+            
+        <operator id="strictClockUpDownOperator.c:varsites_snp10_lineage_4_cluster_8" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+                    
+            <up idref="clockRate.c:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <down idref="Tree.t:varsites_snp10_lineage_4_cluster_8"/>
+                
+        </operator>
+            
+        <operator id="KappaScaler.s:varsites_snp10_lineage_4_cluster_8" spec="ScaleOperator" parameter="@kappa.s:varsites_snp10_lineage_4_cluster_8" scaleFactor="0.5" weight="0.1"/>
+            
+        <operator id="CoalescentConstantTreeScaler.t:varsites_snp10_lineage_4_cluster_8" spec="ScaleOperator" scaleFactor="0.5" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="3.0"/>
+            
+        <operator id="CoalescentConstantTreeRootScaler.t:varsites_snp10_lineage_4_cluster_8" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="3.0"/>
+            
+        <operator id="CoalescentConstantUniformOperator.t:varsites_snp10_lineage_4_cluster_8" spec="Uniform" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="30.0"/>
+            
+        <operator id="CoalescentConstantSubtreeSlide.t:varsites_snp10_lineage_4_cluster_8" spec="SubtreeSlide" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="15.0"/>
+            
+        <operator id="CoalescentConstantNarrow.t:varsites_snp10_lineage_4_cluster_8" spec="Exchange" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="15.0"/>
+            
+        <operator id="CoalescentConstantWide.t:varsites_snp10_lineage_4_cluster_8" spec="Exchange" isNarrow="false" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="3.0"/>
+            
+        <operator id="CoalescentConstantWilsonBalding.t:varsites_snp10_lineage_4_cluster_8" spec="WilsonBalding" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8" weight="3.0"/>
+            
+        <operator id="PopSizeScaler.t:varsites_snp10_lineage_4_cluster_8" spec="ScaleOperator" parameter="@popSize.t:varsites_snp10_lineage_4_cluster_8" scaleFactor="0.75" weight="3.0"/>
+            
+        <operator id="FrequenciesExchanger.s:varsites_snp10_lineage_4_cluster_8" spec="DeltaExchangeOperator" delta="0.01" weight="0.1">
+                    
+            <parameter idref="freqParameter.s:varsites_snp10_lineage_4_cluster_8"/>
+                
+        </operator>
+            
+        <logger id="tracelog" spec="Logger" fileName="varsites_snp10_lineage_4_cluster_8.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+                    
+            <log idref="posterior"/>
+                    
+            <log idref="likelihood"/>
+                    
+            <log idref="prior"/>
+                    
+            <log idref="treeLikelihood.varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log id="TreeHeight.t:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log idref="clockRate.c:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log idref="kappa.s:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log idref="popSize.t:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log idref="CoalescentConstant.t:varsites_snp10_lineage_4_cluster_8"/>
+                    
+            <log idref="freqParameter.s:varsites_snp10_lineage_4_cluster_8"/>
+                
+        </logger>
+            
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+                    
+            <log idref="posterior"/>
+                    
+            <log idref="likelihood"/>
+                    
+            <log idref="prior"/>
+                
+        </logger>
+            
+        <logger id="treelog.t:varsites_snp10_lineage_4_cluster_8" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+                    
+            <log id="TreeWithMetaDataLogger.t:varsites_snp10_lineage_4_cluster_8" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:varsites_snp10_lineage_4_cluster_8"/>
+                
+        </logger>
+            
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+        
+    </run>
+    
+</beast>

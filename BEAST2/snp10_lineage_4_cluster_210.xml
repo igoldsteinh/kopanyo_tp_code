@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+        
+    <data
+ascertained = "true"
+excludeto = "4"
+id="varsites_snp10_lineage_4_cluster_210"
+spec="Alignment"
+name="alignment">
+                                
+        <sequence id="seq_BTB-1541_2015-02-20" spec="Sequence" taxon="BTB-1541_2015-02-20" totalcount="4" value="acgtgtcttagtcgatt"/>
+                                
+        <sequence id="seq_BTB-1904_2015-10-20" spec="Sequence" taxon="BTB-1904_2015-10-20" totalcount="4" value="acgtggcccgatcggtt"/>
+                                
+        <sequence id="seq_BTB-24_2012-09-17" spec="Sequence" taxon="BTB-24_2012-09-17" totalcount="4" value="acgtgggccggccagct"/>
+                                
+        <sequence id="seq_BTB-360_2013-05-17" spec="Sequence" taxon="BTB-360_2013-05-17" totalcount="4" value="acgtaggccggcaggtt"/>
+                                
+        <sequence id="seq_BTB-52_2012-10-11" spec="Sequence" taxon="BTB-52_2012-10-11" totalcount="4" value="acgtgggccggccagtc"/>
+                                
+        <sequence id="seq_BTB-53_2012-10-15" spec="Sequence" taxon="BTB-53_2012-10-15" totalcount="4" value="acgtaggccggccggtt"/>
+                            
+    </data>
+        
+
+
+    
+
+
+    
+
+    <map name="Uniform" >beast.math.distributions.Uniform</map>
+    
+    <map name="Exponential" >beast.math.distributions.Exponential</map>
+    
+    <map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+    
+    <map name="Normal" >beast.math.distributions.Normal</map>
+    
+    <map name="Beta" >beast.math.distributions.Beta</map>
+    
+    <map name="Gamma" >beast.math.distributions.Gamma</map>
+    
+    <map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+    
+    <map name="prior" >beast.math.distributions.Prior</map>
+    
+    <map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+    
+    <map name="OneOnX" >beast.math.distributions.OneOnX</map>
+    
+    <run id="mcmc" spec="MCMC" chainLength="10000000">
+            
+        <state id="state" spec="State" storeEvery="5000">
+                    
+            <tree id="Tree.t:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.tree.Tree" name="stateNode">
+                            
+                <trait id="dateTrait.t:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.tree.TraitSet" dateFormat="yyyy-MM-dd" traitname="date" value="BTB-1541_2015-02-20=2015-02-20,BTB-1904_2015-10-20=2015-10-20,BTB-24_2012-09-17=2012-09-17,BTB-360_2013-05-17=2013-05-17,BTB-52_2012-10-11=2012-10-11,BTB-53_2012-10-15=2012-10-15">
+                                    
+                    <taxa id="TaxonSet.varsites_snp10_lineage_4_cluster_210" spec="TaxonSet">
+                                            
+                        <alignment idref="varsites_snp10_lineage_4_cluster_210"/>
+                                        
+                    </taxa>
+                                
+                </trait>
+                            
+                <taxonset idref="TaxonSet.varsites_snp10_lineage_4_cluster_210"/>
+                        
+            </tree>
+                    
+            <parameter id="clockRate.c:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" name="stateNode">0.0323077</parameter>
+                    
+            <parameter id="kappa.s:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+                    
+            <parameter id="popSize.t:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" name="stateNode">0.3</parameter>
+                    
+            <parameter id="freqParameter.s:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
+                
+        </state>
+            
+        <init id="RandomTree.t:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:varsites_snp10_lineage_4_cluster_210" taxa="@varsites_snp10_lineage_4_cluster_210">
+                    
+            <populationModel id="ConstantPopulation0.t:varsites_snp10_lineage_4_cluster_210" spec="ConstantPopulation">
+                            
+                <parameter id="randomPopSize.t:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+                        
+            </populationModel>
+                
+        </init>
+            
+        <distribution id="posterior" spec="util.CompoundDistribution">
+                    
+            <distribution id="prior" spec="util.CompoundDistribution">
+                            
+                <distribution id="CoalescentConstant.t:varsites_snp10_lineage_4_cluster_210" spec="Coalescent">
+                                    
+                    <populationModel id="ConstantPopulation.t:varsites_snp10_lineage_4_cluster_210" spec="ConstantPopulation" popSize="@popSize.t:varsites_snp10_lineage_4_cluster_210"/>
+                                    
+                    <treeIntervals id="TreeIntervals.t:varsites_snp10_lineage_4_cluster_210" spec="TreeIntervals" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210"/>
+                                
+                </distribution>
+                            
+                <prior id="ClockPrior.c:varsites_snp10_lineage_4_cluster_210" name="distribution" x="@clockRate.c:varsites_snp10_lineage_4_cluster_210">
+                                    
+                    <Uniform id="Uniform.4" lower="0.0032308" name="distr" upper="0.1615385"/>
+                                
+                </prior>
+                            
+                <prior id="FrequenciesPrior.s:varsites_snp10_lineage_4_cluster_210" name="distribution" x="@freqParameter.s:varsites_snp10_lineage_4_cluster_210">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.1" name="distr">
+                                            
+                        <parameter id="RealParameter.3" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.4" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                            
+                <prior id="KappaPrior.s:varsites_snp10_lineage_4_cluster_210" name="distribution" x="@kappa.s:varsites_snp10_lineage_4_cluster_210">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                                            
+                        <parameter id="RealParameter.1" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.2" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                            
+                <prior id="PopSizePrior.t:varsites_snp10_lineage_4_cluster_210" name="distribution" x="@popSize.t:varsites_snp10_lineage_4_cluster_210">
+                                    
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                                            
+                        <parameter id="RealParameter.5" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                                            
+                        <parameter id="RealParameter.6" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                                        
+                    </LogNormal>
+                                
+                </prior>
+                        
+            </distribution>
+                    
+            <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+                            
+                <distribution id="treeLikelihood.varsites_snp10_lineage_4_cluster_210" spec="ThreadedTreeLikelihood" data="@varsites_snp10_lineage_4_cluster_210" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210">
+                                    
+                    <siteModel id="SiteModel.s:varsites_snp10_lineage_4_cluster_210" spec="SiteModel">
+                                            
+                        <parameter id="mutationRate.s:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                                            
+                        <parameter id="gammaShape.s:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                                            
+                        <parameter id="proportionInvariant.s:varsites_snp10_lineage_4_cluster_210" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                                            
+                        <substModel id="hky.s:varsites_snp10_lineage_4_cluster_210" spec="HKY" kappa="@kappa.s:varsites_snp10_lineage_4_cluster_210">
+                                                    
+                            <frequencies id="estimatedFreqs.s:varsites_snp10_lineage_4_cluster_210" spec="Frequencies" frequencies="@freqParameter.s:varsites_snp10_lineage_4_cluster_210"/>
+                                                
+                        </substModel>
+                                        
+                    </siteModel>
+                                    
+                    <branchRateModel id="StrictClock.c:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:varsites_snp10_lineage_4_cluster_210"/>
+                                
+                </distribution>
+                        
+            </distribution>
+                
+        </distribution>
+            
+        <operator id="StrictClockRateScaler.c:varsites_snp10_lineage_4_cluster_210" spec="ScaleOperator" parameter="@clockRate.c:varsites_snp10_lineage_4_cluster_210" scaleFactor="0.75" weight="3.0"/>
+            
+        <operator id="strictClockUpDownOperator.c:varsites_snp10_lineage_4_cluster_210" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+                    
+            <up idref="clockRate.c:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <down idref="Tree.t:varsites_snp10_lineage_4_cluster_210"/>
+                
+        </operator>
+            
+        <operator id="KappaScaler.s:varsites_snp10_lineage_4_cluster_210" spec="ScaleOperator" parameter="@kappa.s:varsites_snp10_lineage_4_cluster_210" scaleFactor="0.5" weight="0.1"/>
+            
+        <operator id="CoalescentConstantTreeScaler.t:varsites_snp10_lineage_4_cluster_210" spec="ScaleOperator" scaleFactor="0.5" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="3.0"/>
+            
+        <operator id="CoalescentConstantTreeRootScaler.t:varsites_snp10_lineage_4_cluster_210" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="3.0"/>
+            
+        <operator id="CoalescentConstantUniformOperator.t:varsites_snp10_lineage_4_cluster_210" spec="Uniform" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="30.0"/>
+            
+        <operator id="CoalescentConstantSubtreeSlide.t:varsites_snp10_lineage_4_cluster_210" spec="SubtreeSlide" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="15.0"/>
+            
+        <operator id="CoalescentConstantNarrow.t:varsites_snp10_lineage_4_cluster_210" spec="Exchange" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="15.0"/>
+            
+        <operator id="CoalescentConstantWide.t:varsites_snp10_lineage_4_cluster_210" spec="Exchange" isNarrow="false" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="3.0"/>
+            
+        <operator id="CoalescentConstantWilsonBalding.t:varsites_snp10_lineage_4_cluster_210" spec="WilsonBalding" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210" weight="3.0"/>
+            
+        <operator id="PopSizeScaler.t:varsites_snp10_lineage_4_cluster_210" spec="ScaleOperator" parameter="@popSize.t:varsites_snp10_lineage_4_cluster_210" scaleFactor="0.75" weight="3.0"/>
+            
+        <operator id="FrequenciesExchanger.s:varsites_snp10_lineage_4_cluster_210" spec="DeltaExchangeOperator" delta="0.01" weight="0.1">
+                    
+            <parameter idref="freqParameter.s:varsites_snp10_lineage_4_cluster_210"/>
+                
+        </operator>
+            
+        <logger id="tracelog" spec="Logger" fileName="varsites_snp10_lineage_4_cluster_210.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+                    
+            <log idref="posterior"/>
+                    
+            <log idref="likelihood"/>
+                    
+            <log idref="prior"/>
+                    
+            <log idref="treeLikelihood.varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log id="TreeHeight.t:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log idref="clockRate.c:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log idref="kappa.s:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log idref="popSize.t:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log idref="CoalescentConstant.t:varsites_snp10_lineage_4_cluster_210"/>
+                    
+            <log idref="freqParameter.s:varsites_snp10_lineage_4_cluster_210"/>
+                
+        </logger>
+            
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+                    
+            <log idref="posterior"/>
+                    
+            <log idref="likelihood"/>
+                    
+            <log idref="prior"/>
+                
+        </logger>
+            
+        <logger id="treelog.t:varsites_snp10_lineage_4_cluster_210" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+                    
+            <log id="TreeWithMetaDataLogger.t:varsites_snp10_lineage_4_cluster_210" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:varsites_snp10_lineage_4_cluster_210"/>
+                
+        </logger>
+            
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+        
+    </run>
+    
+</beast>
