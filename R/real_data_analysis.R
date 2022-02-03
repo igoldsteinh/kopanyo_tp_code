@@ -14,6 +14,8 @@ library(SAMBA)
 set.seed(1)
 
 # dictionaries and varfiles formed in creating_BEAST_clusters_snplevel5-12.R
+# BEAST2 .xml files used to create maximum clade credibilit trees
+# are in the BEAST2 folder
 
 
 # SNP5 infection source label creation
