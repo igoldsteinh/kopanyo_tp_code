@@ -542,3 +542,503 @@ summary_beta110 <- stan_fit10 %>%
     OR_high =exp(.upper)
   )
 
+
+# Population summary table ------------------------------------------------
+
+meta_name <- "Botswana_1426_good_quality_resistance_metadata.csv"
+
+meta_data <- read_csv2(here::here("data", meta_name)) %>%
+  filter(gMixture < 2) %>%
+  filter(!is.na(collectdt)) %>%
+  mutate(my_hiv = hivfinal_new - 1) %>%
+  filter(!is.na(my_hiv))
+
+
+table_data <- meta_data %>%
+  dplyr::select(SampleID, Lineage, genderf1, agenew, my_hiv)
+
+
+lineage_count <- table_data %>%
+  group_by(Lineage) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(total = sum(n),
+         percent = n/total)
+
+gender_count <- table_data %>%
+  group_by(genderf1) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(total = sum(n),
+         percent = n/total)
+
+
+table_data$agenew <- as.numeric(table_data$agenew)
+
+table_data$agecat <- "Under 18"
+table_data$agecat[table_data$agenew > 18 & table_data$agenew <= 35] <- "18 to 35"
+table_data$agecat[table_data$agenew > 35 & table_data$agenew <= 55] <- "35 to 55"
+table_data$agecat[table_data$agenew > 55 & table_data$agenew <= 75] <- "55 to 75"
+table_data$agecat[table_data$agenew >75] <- "75+"
+
+age_count <- table_data %>%
+  group_by(agecat) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(total = sum(n),
+         percent = n/total)
+
+
+hiv_count <- table_data %>%
+  group_by(my_hiv) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(total = sum(n),
+         percent = n/total)
+
+# BEAST Tree visualizations -----------------------------------------------
+dat_for_vis10 <- read_csv(here::here("R", "dat_forvis_snp10_allshare.csv"))
+
+dict10 <-read_csv(here::here("data", "snp_10_kopanyo_cluster_dictionary.csv"))
+
+mcc_name <- str_c("mcctree", dict10$file_name, sep = "_")
+
+mcc_file_list <- str_replace(mcc_name,"\\..*","") 
+time_tree_list <- map(mcc_file_list, ~read.nexus(here::here("BEAST2", .x)))
+
+# create sample names by tree
+sample_names <- map(time_tree_list, pluck, "tip.label") %>%
+  map(data.frame) %>%
+  bind_rows(.id = "tree") %>%
+  rename("sample_name" = ".x..i..")
+
+
+file_name <- data.frame(tree = 1:46, file_name = dict10$file_name)
+
+sample_names$tree <- as.numeric(sample_names$tree)
+
+sample_names <- sample_names %>%
+  left_join(file_name, by = "tree") %>%
+  mutate(date = str_sub(sample_name, start = -10))
+
+sample_names$date <- as.Date(sample_names$date)
+
+
+i <- 1
+for (i in 1:length(time_tree_list)) {
+  time_tree_list[[i]][["tip.label"]] <- gsub("_.*","",  time_tree_list[[i]][["tip.label"]])
+  time_tree_list[[i]][["tip.label"]] <- gsub(".*-","",  time_tree_list[[i]][["tip.label"]])
+  
+}
+
+max_dates <- sample_names %>%
+  group_by(file_name) %>%
+  summarise(max_date = max(date),
+            max_decimal_date = lubridate::decimal_date(max_date))
+
+
+# now figure out which trees have tp infection sources in them 
+is <- dat_for_vis10 %>%
+  dplyr::select(names, tp_source, my_hiv)
+sample_names <- sample_names %>%
+  left_join(is, by = c("sample_name" = "names")) %>%
+  group_by(tree) %>%
+  mutate(has_source = any(tp_source == TRUE)) %>%
+  left_join(max_dates, by = "file_name")
+
+sample_names$sample_name <- gsub("_.*","",sample_names$sample_name)
+sample_names$sample_name <- gsub(".*-","",sample_names$sample_name)
+
+tree_summary <- sample_names %>% 
+  group_by(tree) %>%
+  summarise(
+    has_source = sum(has_source) > 0,
+    num_samples = n()
+  ) 
+# lets use 43,12,9,16
+
+tree43 <- time_tree_list[[43]]
+tree9 <- time_tree_list[[9]]
+tree12 <- time_tree_list[[12]]
+tree16 <- time_tree_list[[16]]
+
+sample_names <- sample_names %>%
+  mutate(graph_hiv = my_hiv == 0)
+data43 <- sample_names %>%
+  filter(tree == 43)
+
+data9 <- sample_names %>%
+  filter(tree == 9)
+
+data12 <- sample_names %>%
+  filter(tree == 12)
+
+data16 <- sample_names %>%
+  filter(tree==16)
+
+
+
+tree_plot43<- ggtree(tree43, mrsd = unique(data43$max_date)) + 
+  #geom_tiplab(size = 2) +
+  ggtitle("SNP 10") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data43 <- data43 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot43))))
+
+level43 <- get_taxa_name(tree_plot43)
+
+hiv_status43 <-ggplot(data = data43, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source43 <- ggplot(data43, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+
+
+tree_plot9<- ggtree(tree9, mrsd = unique(data9$max_date)) + 
+  # geom_tiplab(size = 2) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data9 <- data9 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot9))))
+
+level9 <- get_taxa_name(tree_plot9)
+
+hiv_status9 <-ggplot(data = data9, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source9 <- ggplot(data9, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+tree_plot12<- ggtree(tree12, mrsd = unique(data12$max_date)) + 
+  # geom_tiplab(size = 2) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data12 <- data12 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot12))))
+
+level12 <- get_taxa_name(tree_plot12)
+
+hiv_status12 <-ggplot(data = data12, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source12 <- ggplot(data12, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+tree_plot16<- ggtree(tree16, mrsd = unique(data16$max_date)) + 
+  geom_tiplab(size = 2.5) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data16 <- data16 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot16))))
+
+level16 <- get_taxa_name(tree_plot16)
+
+hiv_status16 <-ggplot(data = data16, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source16 <- ggplot(data16, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+test <- (tree_plot43 + hiv_status43 + tp_source43 +plot_layout(widths = c(19,1,1)) ) /
+  (tree_plot12 + hiv_status12 + tp_source12 + plot_layout(widths = c(19,1,1))) /
+  (tree_plot9 + hiv_status9 + tp_source9 + plot_layout(widths = c(19,1,1))) / 
+  (tree_plot16 + hiv_status16 + tp_source16 + plot_layout(widths = c(19,1,1))) 
+
+
+# ggsave(here::here("code", "R Code", "tree_combined8.pdf"), plot = tree_combined8, width = 8, height = 8)
+# ggsave(here::here("code", "R Code", "tree_combined9.pdf"), plot = tree_combined9, width = 8, height = 8)
+# ggsave(here::here("code", "R Code", "test.pdf"), plot = test, width = 8, height = 8)
+
+
+# repeat but for 5
+files <- c("mcctree_snp5_lineage1_cluster6",
+           "mcctree_snp5_lineage1_cluster7",
+           "mcctree_snp5_lineage2_cluster3",
+           "mcctree_snp5_lineage4_cluster105",
+           "mcctree_snp5_lineage4_cluster125",
+           "mcctree_snp5_lineage4_cluster17",
+           "mcctree_snp5_lineage4_cluster175",
+           "mcctree_snp5_lineage4_cluster188",
+           "mcctree_snp5_lineage4_cluster202",
+           "mcctree_snp5_lineage4_cluster204",
+           "mcctree_snp5_lineage4_cluster21",
+           "mcctree_snp5_lineage4_cluster254",
+           "mcctree_snp5_lineage4_cluster282",
+           "mcctree_snp5_lineage4_cluster312",
+           "mcctree_snp5_lineage4_cluster36",
+           "mcctree_snp5_lineage4_cluster385",
+           "mcctree_snp5_lineage4_cluster40",
+           "mcctree_snp5_lineage4_cluster42",
+           "mcctree_snp5_lineage4_cluster46",
+           "mcctree_snp5_lineage4_cluster51",
+           "mcctree_snp5_lineage4_cluster92")
+
+time_tree_list <- map(files, ~read.nexus(here::here("BEAST2", .x)))
+
+dat_for_vis5 <- read_csv(here::here("R", "dat_forvis_snp5_allshare.csv"))
+
+
+
+# create sample names by tree
+sample_names <- map(time_tree_list, pluck, "tip.label") %>%
+  map(data.frame) %>%
+  bind_rows(.id = "tree") %>%
+  rename("sample_name" = ".x..i..")
+
+
+file_name <- data.frame(tree = 1:46, file_name = dict10$file_name)
+
+sample_names$tree <- as.numeric(sample_names$tree)
+
+sample_names <- sample_names %>%
+  left_join(file_name, by = "tree") %>%
+  mutate(date = str_sub(sample_name, start = -10))
+
+sample_names$date <- as.Date(sample_names$date)
+
+
+i <- 1
+for (i in 1:length(time_tree_list)) {
+  time_tree_list[[i]][["tip.label"]] <- gsub("_.*","",  time_tree_list[[i]][["tip.label"]])
+  time_tree_list[[i]][["tip.label"]] <- gsub(".*-","",  time_tree_list[[i]][["tip.label"]])
+  
+}
+
+max_dates <- sample_names %>%
+  group_by(file_name) %>%
+  summarise(max_date = max(date),
+            max_decimal_date = lubridate::decimal_date(max_date))
+
+
+# now figure out which trees have tp infection sources in them 
+is <- dat_for_vis10 %>%
+  dplyr::select(names, tp_source, my_hiv)
+sample_names <- sample_names %>%
+  left_join(is, by = c("sample_name" = "names")) %>%
+  group_by(tree) %>%
+  mutate(has_source = any(tp_source == TRUE)) %>%
+  left_join(max_dates, by = "file_name")
+
+sample_names$sample_name <- gsub("_.*","",sample_names$sample_name)
+sample_names$sample_name <- gsub(".*-","",sample_names$sample_name)
+
+tree_summary <- sample_names %>% 
+  group_by(tree) %>%
+  summarise(
+    has_source = sum(has_source) > 0,
+    num_samples = n()
+  ) 
+# lets use 43,12,9,16
+
+tree17 <- time_tree_list[[17]]
+tree11 <- time_tree_list[[11]]
+tree5 <- time_tree_list[[5]]
+tree12_snp5 <- time_tree_list[[12]]
+
+sample_names <- sample_names %>%
+  mutate(graph_hiv = my_hiv == 0)
+data17 <- sample_names %>%
+  filter(tree == 17)
+
+data11 <- sample_names %>%
+  filter(tree == 11)
+
+data12_snp5 <- sample_names %>%
+  filter(tree == 12)
+
+data5 <- sample_names %>%
+  filter(tree==5)
+
+
+
+tree_plot17<- ggtree(tree17, mrsd = unique(data17$max_date)) + 
+  # geom_tiplab(size = 2) +
+  ggtitle("SNP 5") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data17 <- data17 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot17))))
+
+level17 <- get_taxa_name(tree_plot17)
+
+hiv_status17 <-ggplot(data = data17, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source17 <- ggplot(data17, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+
+
+tree_plot11<- ggtree(tree11, mrsd = unique(data11$max_date)) + 
+  #geom_tiplab(size = 2) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data11 <- data11 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot11))))
+
+level11 <- get_taxa_name(tree_plot11)
+
+hiv_status11 <-ggplot(data = data11, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source11 <- ggplot(data11, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+tree_plot12_snp5<- ggtree(tree12_snp5, mrsd = unique(data12_snp5$max_date)) + 
+  geom_tiplab(size = 2.5) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data12_snp5 <- data12_snp5 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot12_snp5))))
+
+level12_snp5 <- get_taxa_name(tree_plot12_snp5)
+
+hiv_status12_snp5 <-ggplot(data = data12_snp5, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) +
+  theme(legend.position = "none")
+
+
+
+
+
+tp_source12_snp5 <- ggplot(data12_snp5, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source") +
+  theme(legend.position = "none")
+
+
+tree_plot5<- ggtree(tree5, mrsd = unique(data5$max_date)) + 
+  #geom_tiplab(size = 1.5) +
+  ggtitle("") + 
+  theme_tree2() + 
+  xlab("Time")
+
+
+data5 <- data5 %>%
+  mutate(sample_name = fct_relevel(sample_name, rev(get_taxa_name(tree_plot5))))
+
+level5 <- get_taxa_name(tree_plot5)
+
+hiv_status5 <-ggplot(data = data5, aes( x=1, y=sample_name)) + 
+  geom_tile(aes(fill=graph_hiv)) + 
+  theme_tree() +
+  labs(fill = "HIV Status") +
+  scale_fill_manual(values = alpha(c("blue", "red"), .3)) 
+
+
+
+
+
+tp_source5 <- ggplot(data5, aes(x=1, y = sample_name)) +
+  geom_tile(aes(fill = tp_source)) +
+  theme_tree() +
+  labs(fill = "Infection Source")
+
+test <- (tree_plot43 + hiv_status43 + tp_source43 +plot_layout(widths = c(19,1,1)) ) /
+  (tree_plot12_snp5 + hiv_status12_snp5 + tp_source12_snp5 + plot_layout(widths = c(19,1,1))) /
+  (tree_plot9 + hiv_status9 + tp_source9 + plot_layout(widths = c(19,1,1))) / 
+  (tree_plot16 + hiv_status16 + tp_source16 + plot_layout(widths = c(19,1,1))) 
+
+full_tree_plot <- (tree_plot43 + hiv_status43 + tp_source43 +tree_plot17 + hiv_status17 + tp_source17 +plot_layout(widths = c(19,1,1, 19, 1, 1)) ) /
+  (tree_plot12 + hiv_status12 + tp_source12 +tree_plot11 + hiv_status11 + tp_source11 + plot_layout(widths = c(19,1,1, 19, 1, 1))) / 
+  (tree_plot9 + hiv_status9 + tp_source9 +tree_plot5 + hiv_status5 + tp_source5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) /
+  (tree_plot16 + hiv_status16 + tp_source16 + tree_plot12_snp5 + hiv_status12_snp5 + tp_source12_snp5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) + plot_layout(guides = "collect")
+
+
