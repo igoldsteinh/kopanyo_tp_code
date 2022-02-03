@@ -1,7 +1,8 @@
-# repeating analysis of kopanyo archive data
-# using a 10 snp cutoff rather than a 5 snp
-# putting all R code into one place
-# beast code will be in separate files
+# This file contains code to analyze real data from a TB study of Botswana
+# BEAST Trees at two different SNP cutoffs are used as input into TransPhylo
+# The output of TransPhylo is used to generate infection source labels
+# Odds ratios are obtained using three different methods of analysis
+# Skip to line 377 for the final data analysis
 library(ape)
 library(tidyverse)
 library(TransPhylo)
@@ -13,6 +14,8 @@ library(SAMBA)
 set.seed(1)
 
 # dictionaries and varfiles formed in creating_BEAST_clusters_snplevel5-12.R
+
+
 # SNP5 infection source label creation
 # read in mcc trees -------------------------------------------------------
 
@@ -40,7 +43,7 @@ files <- c("mcctree_snp5_lineage1_cluster6",
 
 time_tree_list <- map(files, ~read.nexus(here::here( "BEAST2", .x)))
 
-dict <- read_csv(here::here("data", "kopanyo_cluster_dictionary_filtered.csv")) %>%
+dict5 <- read_csv(here::here("data", "kopanyo_cluster_dictionary_filtered.csv")) %>%
   filter(!is.na(mean_posterior_clock))
 
 cluster_key <- read_csv(here::here("data", "snp5_sequence_cluster_crosswalk.csv"))
@@ -50,7 +53,7 @@ max_dates <- cluster_key %>%
   group_by(cluster_name) %>%
   summarise(max_date = max(collectdt))
 
-mcc_dates <- dict %>%
+mcc_dates <- dict5 %>%
   left_join(max_dates, by = "cluster_name") %>%
   dplyr::select(mcc_tree_name, max_date) 
 
@@ -92,7 +95,6 @@ res5 <- infer_multittree_share_param(p_tree_list,
 
 # convergence diagnostics for all share -----------------------------------
 
-res5 <- read_rds(here::here("R", "snp5_kopanyo_archive_tp_allshare_res.rds"))
 
 get_param_estimates <- function(record, p){
   sapply(record, function(x) x[[p]])
@@ -128,7 +130,7 @@ max_dates <- cluster_key %>%
   group_by(cluster_name) %>%
   summarise(max_date = max(collectdt))
 
-mcc_dates <- dict %>%
+mcc_dates <- dict5 %>%
   left_join(max_dates, by = "cluster_name") %>%
   dplyr::select(mcc_tree_name, max_date) 
 
@@ -254,7 +256,6 @@ res10 <- infer_multittree_share_param(p_tree_list,
 
 # convergence diagnostics -----------------------------------
 
-res10 <- read_rds(here::here("snp10_kopanyo_archive_tp_allshare_res.rds"))
 
 get_param_estimates <- function(record, p){
   sapply(record, function(x) x[[p]])
@@ -375,26 +376,28 @@ dat_for_vis10 <- prob_inf_frame10 %>%
 
 
 # Analyze the data --------------------------------------------------------
+dat_for_analysis5 <- read_csv("dat_for_analysis_snp5_allshare.csv")
 
 dat_for_analysis10 <- read_csv("dat_for_analysis_snp10_allshare.csv")
-
-dim(dat_for_analysis5)[1]
-dim(dat_for_analysis10)[1]
 
 # num infection sources
 sum(dat_for_analysis5$tp_source)
 sum(dat_for_analysis10$tp_source)
 
-# same sources? 
+# num clusters, mean counts, mean tree heights
+summary10 <- dict10 %>%
+  summarise(
+    num_cluster = n(),
+    mean_count = mean(count),
+    mean_height = mean(mean_tree_height)
+  )
 
-source10 <- dat_for_analysis10 %>%
-  filter(tp_source == TRUE)
-
-source5 <- dat_for_analysis5 %>%
-  filter(tp_source == TRUE) %>%
-  mutate(same = names %in% source10$names)
-
-# 11 of 13 are shared this time (using all shared)
+summary5 <- dict5 %>%
+  summarise(
+    num_cluster = n(),
+    mean_count = mean(count),
+    mean_height = mean(mean_tree_height)
+  )
 
 # unadjusted tp glm 
 glm5 <- glm(tp_source ~ my_hiv, data = dat_for_analysis5, family = binomial)
@@ -447,28 +450,6 @@ snp10_cov_coeffs <- data.frame(cbind(names, point_est10, OR_ci10_cov)) %>%
   rename("point_est" = 2, "CI2.5%" = 3, "CI97.5%" = 4)
 rownames(snp10_cov_coeffs) <- NULL
 
-# now do it for SAMBA, need to first get prob of being a source from only the sample-able population in the simulations
-# 
-# outputs_list_lastthree <- map(outputs_list, ~map(.x, ~.x %>%
-#                                             mutate(true_infector = hosts.ID %in% inf.by) %>%
-#                                             filter(last_one == TRUE | last_two == TRUE | last_three == TRUE)))
-# 
-# outputs_frames_lastthree <- map(outputs_list_lastthree, ~bind_rows(., .id = "sim"))
-# 
-# big_frame_lastthree <- outputs_frames_lastthree %>% bind_rows(.id = "simsim")
-# 
-# avg_prob_source <- big_frame_lastthree %>%
-#                    group_by(simsim, sim) %>%
-#                    summarise(num_cases = n(),
-#                              percent_source = sum(true_infector)/num_cases) %>%
-#                    ungroup() %>%
-#                    summarise(
-#                      mean_percent_source = mean(percent_source)
-#                    )
-
-# getting 0.336 right now
-
-
 # snp5
 SAMBA_sens5 <- sensitivity(as.numeric(dat_for_analysis5$tp_source),
                            X = dat_for_analysis5$my_hiv,
@@ -519,7 +500,7 @@ model_objects5 <- list(N = dim(dat_for_analysis5)[1],
 
 
 
-stan_fit5 <- stan(file =here::here("code", "R Code", "misclass_logistic_regression.stan"),
+stan_fit5 <- stan(file =here::here("R", "misclass_logistic_regression.stan"),
                   data = model_objects5,
                   seed = 45,
                   iter = 2000,
@@ -545,7 +526,7 @@ model_objects10 <- list(N = dim(dat_for_analysis10)[1],
 
 
 
-stan_fit10 <- stan(file =here::here("code", "R Code", "misclass_logistic_regression.stan"),
+stan_fit10 <- stan(file =here::here("R", "misclass_logistic_regression.stan"),
                    data = model_objects10,
                    seed = 45,
                    iter = 2000,
