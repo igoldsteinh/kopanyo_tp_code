@@ -1,40 +1,43 @@
+# Produces visualizations of simulation results
+# Based on summaries generated in summarise_simulation_results.R
 library(tidyverse)
 library(xtable)
 library(patchwork)
 
-# from 16active_8year_diffsim_finalcalc.R
-acc_one <- read_rds(here::here("code", 
-                           "R Code", 
-                           "16active_8year_acc_tables.rds"))
-summary_one <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_sim_or_tables.rds"))
-# from 16active_8year_1.75sim_finalcalc.R
-acc_twov1 <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_1.75diff_acc_tablesv1.rds"))
-summary_twov1 <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "16active_8year_1.75diff_sim_or_tablesv1.rds"))
 
-# # coverage remains the same mean bias differs by a little bit but no takeaways are changed
-# acc_twov2 <- read_rds(here::here("code", 
-#                                  "R Code", 
-#                                  "16active_8year_1.75diff_acc_tablesv2.rds"))
-# summary_twov2 <- read_rds(here::here("code", 
-#                                      "R Code", 
-#                                      "16active_8year_1.75diff_sim_or_tablesv2.rds"))
+# read in primary simulation results --------------------------------------
 
-# from 16active_8year_3sim_finalcalc.R
-acc_three <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_3diff_acc_tablesv2.rds")) %>%
+
+acc_one <- read_rds(here::here("R", 
+                               "simulation_accuracy_and_performance",
+                               "simulation_results",
+                           "primary_1_0.3_acc_tables.rds"))
+summary_one <- read_rds(here::here("R", 
+                                   "simulation_accuracy_and_performance",
+                                   "simulation_results",
+                               "primary_1_0.3_or_tables.rds"))
+
+acc_twov1 <- read_rds(here::here("R", 
+                                 "simulation_accuracy_and_performance",
+                                 "simulation_results",
+                               "primary_1.75_foursevenths_acc_tablesv1.rds"))
+summary_twov1 <- read_rds(here::here("R", 
+                                     "simulation_accuracy_and_performance",
+                                     "simulation_results",
+                                   "primary_1.75_foursevenths_or_tablesv1.rds"))
+
+acc_three <- read_rds(here::here("R", 
+                                 "simulation_accuracy_and_performance",
+                                 "simulation_results",
+                               "primary_3_acc_tablesv2.rds")) %>%
               mutate(id = 5)
-summary_three <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "16active_8year_3diff_sim_or_tablesv2.rds")) %>%
-                  mutate(id = 5)
 
+
+summary_three <- read_rds(here::here("R", 
+                                     "simulation_accuracy_and_performance",
+                                     "simulation_results",
+                                   "primary_3_or_tablesv2.rds")) %>%
+                  mutate(id = 5)
 
 summary <- c(summary_one, summary_twov1)%>%           
             bind_rows(.id = "id") %>%
@@ -67,8 +70,75 @@ summary <- summary %>%
                          true_val
                          )
 
+# read in secondary simulation results ------------------------------------
 
-# trying to visualize this table as a figure  -----------------------------
+
+altacc_one <- read_rds(here::here("R", 
+                                  "simulation_accuracy_and_performance",
+                                  "simulation_results",
+                                  "secondary_increase_density_acc_tablesv1.rds"))
+
+
+altsummary_one <- read_rds(here::here("R", 
+                                      "simulation_accuracy_and_performance",
+                                      "simulation_results",
+                                      "secondary_increase_density_or_tablesv1.rds"))
+
+  altacc_two <- read_rds(here::here("R", 
+                                  "simulation_accuracy_and_performance",
+                                  "simulation_results",
+                                  "secondary_increase_clusters_acc_tablesv1.rds"))
+
+
+altsummary_two <- read_rds(here::here("R", 
+                                      "simulation_accuracy_and_performance",
+                                      "simulation_results",
+                                      "secondary_increase_clusters_or_tablesv1.rds"))
+
+altacc_three <- read_rds(here::here("R", 
+                                    "simulation_accuracy_and_performance",
+                                    "simulation_results",
+                                    "secondary_increase_window_acc_tablesv1.rds"))
+
+
+altsummary_three <- read_rds(here::here("R", 
+                                        "simulation_accuracy_and_performance",
+                                        "simulation_results",
+                                        "secondary_increase_window_or_tablesv1.rds")) %>%
+  mutate(id = "three")
+
+
+altsummary <- c(altsummary_one, altsummary_two) %>%
+  bind_rows(.id = "id") %>%
+  rbind(altsummary_three)
+
+altacc <- c(altacc_one, altacc_two, altacc_three) %>%
+  bind_rows(.id = "id") 
+
+altsummary <- altsummary %>%
+  arrange(setting) %>%           
+  mutate(percent_bias = mean_bias/ true_val) %>%
+  dplyr::select(-mean_lb, 
+                - mean_ub,
+                -mean_diff, 
+                - id, 
+                - percent_reject_low, 
+                - percent_reject_high,
+                -mean_bias) %>%
+  dplyr::select(mean_OR, 
+                percent_bias, 
+                sq_MSE, 
+                percent_reject,
+                mean_ci_width,
+                percent_coverage,
+                mean_num_samples,
+                num_trials,
+                type, 
+                setting,
+                true_val
+  ) 
+
+# Figure : "Operating characteristics of statistical pipelines in primary simulation settings"
 
 # need 3 columns, value, metric, method
 graph_summary <- summary %>%
@@ -90,11 +160,11 @@ label_list <- c("Coverage", "Reject", "Percent.Bias", "MCIW")
 graph_summary$metric <- factor(graph_summary$metric, levels=level_list, labels=label_list)
 
 
-graph_summary$setting[graph_summary$setting == "16active_8year_1.75diff"] <- "1.75"
-graph_summary$setting[graph_summary$setting == "16active_8year_3diff"] <- "3"
-graph_summary$setting[graph_summary$setting == "16active_8year_samediff"] <- "1"
-graph_summary$setting[graph_summary$setting == "16active_8yearsim_0.6diff"] <- "4/7"
-graph_summary$setting[graph_summary$setting == "16active_8yearsim_0.3diff"] <- "0.3"
+graph_summary$setting[graph_summary$setting == "primary_1.75"] <- "1.75"
+graph_summary$setting[graph_summary$setting == "primary_3"] <- "3"
+graph_summary$setting[graph_summary$setting == "primary_1"] <- "1"
+graph_summary$setting[graph_summary$setting == "primary_foursevenths"] <- "4/7"
+graph_summary$setting[graph_summary$setting == "primary_0.3"] <- "0.3"
 
 level_list <- c("0.3", "4/7", "1", "1.75", "3")
 
@@ -113,15 +183,8 @@ level_list <- c("Truth + GLM", "TP + GLM", "TP + ME1", "TP + ME2")
 
 
 graph_summary$type <- factor(graph_summary$type, levels = level_list)
-bar_plot <- graph_summary %>%
-            ggplot(aes(x = type, y = value, shape = setting)) +
-            geom_jitter(width = 0, height = 0.005, stroke = 0.75) +
-            facet_wrap(~metric, scales = "free_y", labeller = label_parsed) +
-            theme_bw()
-bar_plot
 
 
-# redoing this with separate bar plots so we can add in dotted lin --------
 
 cov_plot <- graph_summary %>%
             filter(metric == "Coverage") %>%
@@ -187,74 +250,10 @@ primary_metric_plot <- cov_plot + reject_plot + bias_plot + MCIW_plot
 primary_metric_plot
 
 
-ggsave(here::here("code", "R Code", "primary_metric_plot.pdf"), 
-       plot = primary_metric_plot, 
-       width = 8, 
-       height = 7 )
 
 
-# let's make the same graph for the alternate settings --------------------
-# these come from altsetting_1.75sim_finalcalc.R
-altacc_one <- read_rds(here::here("code", 
-                               "R Code", 
-                               "altsetting_1.75diff_acc_tablesv1.rds"))
+# Figure: "Operating characteristics of statistical pipelines in secondary simulation settings"
 
-
-altsummary_one <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "altsetting_1.75diff_sim_or_tablesv1.rds"))
-
-# dubclusters comes from dubclusters_1.75sim_results_tablev1.R
-altacc_two <- read_rds(here::here("code", 
-                               "R Code", 
-                               "dubclusters_1.75diff_acc_tablesv1.rds"))
-
-
-altsummary_two <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "dubclusters_1.75diff_sim_or_tablesv1.rds"))
-
-# 7yrsamp_1.75sim_acc_tablev1.R
-altacc_three <- read_rds(here::here("code", 
-                               "R Code", 
-                               "7yrsamp_1.75diff_acc_tablesv1.rds"))
-
-
-altsummary_three <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "7yrsamp_1.75diff_sim_or_tablesv1.rds")) %>%
-                    mutate(id = "three")
-
-altsummary <- c(altsummary_one, altsummary_two) %>%
-  bind_rows(.id = "id") %>%
-  rbind(altsummary_three)
-
-altacc <- c(altacc_one, altacc_two, altacc_three) %>%
-  bind_rows(.id = "id") 
-
-altsummary <- altsummary %>%
-  arrange(setting) %>%           
-  mutate(percent_bias = mean_bias/ true_val) %>%
-  dplyr::select(-mean_lb, 
-                - mean_ub,
-                -mean_diff, 
-                - id, 
-                - percent_reject_low, 
-                - percent_reject_high,
-                -mean_bias) %>%
-  dplyr::select(mean_OR, 
-                percent_bias, 
-                sq_MSE, 
-                percent_reject,
-                mean_ci_width,
-                percent_coverage,
-                mean_num_samples,
-                num_trials,
-                type, 
-                setting,
-                true_val
-  ) %>%
-  filter(setting != "32active_4yearsim_1.75diff" & setting!= "16active_4yearsim_1.75diff")
 
 altgraph_summary <- altsummary %>%
   dplyr::select(type, 
@@ -275,9 +274,9 @@ label_list <- c("Coverage", "Reject", "Percent.Bias", "MCIW")
 altgraph_summary$metric <- factor(altgraph_summary$metric, levels=level_list, labels=label_list)
 
 
-altgraph_summary$setting[altgraph_summary$setting == "32active_8yearsim_1.75"] <- "Increase Sampling Density"
-altgraph_summary$setting[altgraph_summary$setting == "7yr samp"] <- "Increase Sampling Window"
-altgraph_summary$setting[altgraph_summary$setting == "16active_8yearsim_1.75diff_dubclusters"] <- "Increase Clusters"
+altgraph_summary$setting[altgraph_summary$setting == "increase density"] <- "Increase Sampling Density"
+altgraph_summary$setting[altgraph_summary$setting == "increase window"] <- "Increase Sampling Window"
+altgraph_summary$setting[altgraph_summary$setting == "increase clusters"] <- "Increase Clusters"
 
 
 altgraph_summary$type[altgraph_summary$type == "SAMBA Calc"] <- "TP + ME1"
@@ -373,11 +372,8 @@ altprimary_metric_plot <- altcov_plot + altreject_plot + altbias_plot + altMCIW_
 altprimary_metric_plot
 
 
-ggsave(here::here("code", "R Code", "alt_metric_plot.pdf"), 
-       plot = altprimary_metric_plot, 
-       width = 10, 
-       height = 7 )
 
+# Figure: "Point estimates of sensitivity and specificity of identifying infection sources"
 
 # making a graph for the alt acc table ------------------------------------
 altacc_graph_data <- altacc 
@@ -390,9 +386,9 @@ altacc_graph_data <- altacc_graph_data %>%
                      rename("Metric" = "true_infector")
 
 
-altacc_graph_data$setting[altacc_graph_data$setting == "32active_8yearsim_1.75"] <- "Increase Sampling Density"
-altacc_graph_data$setting[altacc_graph_data$setting == "7yr samp"] <- "Increase Sampling Window"
-altacc_graph_data$setting[is.na(altacc_graph_data$setting)] <- "Increase Clusters"
+altacc_graph_data$setting[altacc_graph_data$setting == "increase density"] <- "Increase Sampling Density"
+altacc_graph_data$setting[altacc_graph_data$setting == "increase window"] <- "Increase Sampling Window"
+altacc_graph_data$setting[altacc_graph_data$setting == "increase clusters"] <- "Increase Clusters"
 
 altacc_graph_data <- altacc_graph_data %>%
                      filter(setting %in% c("Increase Sampling Density",
@@ -427,11 +423,11 @@ acc_graph_data <- acc_graph_data %>%
 
 
 
-acc_graph_data$setting[acc_graph_data$setting == "16active_8year_1.75diff"] <- "1.75"
-acc_graph_data$setting[acc_graph_data$setting == "16active_8year_3diff"] <- "3"
-acc_graph_data$setting[acc_graph_data$setting == "16active_8year_samediff"] <- "1"
-acc_graph_data$setting[acc_graph_data$setting == "16active_8yearsim_0.6diff"] <- "4/7"
-acc_graph_data$setting[acc_graph_data$setting == "16active_8yearsim_0.3diff"] <- "0.3"
+acc_graph_data$setting[acc_graph_data$setting == "primary_1.75"] <- "1.75"
+acc_graph_data$setting[acc_graph_data$setting == "primary_3"] <- "3"
+acc_graph_data$setting[acc_graph_data$setting == "primary_1"] <- "1"
+acc_graph_data$setting[acc_graph_data$setting == "primary_foursevenths"] <- "4/7"
+acc_graph_data$setting[acc_graph_data$setting == "primary_0.3"] <- "0.3"
 
 level_list <- c("0.3", "4/7", "1", "1.75", "3")
 
