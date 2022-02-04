@@ -1,17 +1,12 @@
 # summarising odds
 library(tidyverse)
-#source(here::here("code", "R Code", "tp_res_functions.R"))
-source("tp_res_functions.R")
+source(here::here("R", "tp_res_functions.R"))
 res_name_suffix <- "16active_8yearsim_1.75diff_odds_seed_"
 
 file_list <- list.files(pattern = res_name_suffix)
 
 
 
- # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code",
- #                                            "R Code",
- #                                            "odds_estimation_files",
- #                                            .x))))
 
 
 res_list <- map(file_list,  ~read_rds(.x))

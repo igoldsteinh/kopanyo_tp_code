@@ -1,4 +1,6 @@
 # template for simming 1000 sims with pr transmission at 1.75 rather than 3
+# Run for seeds 1-900
+# Some seeds were run for 2000 rather than 500
 library(nosoi)  
 library(tidyverse)
 library(TransPhylo)
