@@ -343,7 +343,7 @@ hist(prob_inf_frame10$prob_source)
 
 meta_name <- "Botswana_1426_good_quality_resistance_metadata.csv"
 
-meta_data <- read_csv2(here::here("data", meta_name)) %>%
+meta_data <- read_csv(here::here("data", meta_name)) %>%
   filter(gMixture < 2) %>%
   filter(!is.na(collectdt))
 

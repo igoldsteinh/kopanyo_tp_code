@@ -36,7 +36,7 @@ samples4 <- read.dna(file=here("data", "Botswana_lineage_4_1252_samples.fasta"),
 
 meta_name <- "Botswana_1426_good_quality_resistance_metadata.csv"
 
-meta_data <- read_csv2(here("data", meta_name)) %>%
+meta_data <- read_csv(here("data", meta_name)) %>%
   filter(gMixture < 2) %>%
   filter(!is.na(collectdt))
 
