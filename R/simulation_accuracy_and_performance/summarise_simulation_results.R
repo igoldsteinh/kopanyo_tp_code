@@ -8,7 +8,7 @@ set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
 #source(here::here("code", "R Code", "tp_res_functions.R"))
-source("tp_res_functions.R")
+source(here::here("tp_res_functions.R"))
 
 
 
@@ -24,17 +24,8 @@ setting <- list("primary_1.75",
                 "primary_foursevenths"
 )
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
-
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
 
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 total_files <- map(file_list, ~length(.x))
 print(total_files)
@@ -51,7 +42,7 @@ sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 test_summary <- vector(mode = "list", length = length(res_list))
 
 
-# calculate true values ---------------------------------------------------
+# calculate results ---------------------------------------------------
 
 
 true_val <- c(1.93,0.52)
@@ -82,24 +73,11 @@ rm(res_list)
 
 # read in the results -----------------------------------------------------
 res_name_suffix <- "primary_3_res_seed_"
-
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- "primary_3"
 
 
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-
 file_list <- list.files(pattern = res_name_suffix)
-# file_list <- list.files(path = address, pattern = res_name_suffix)
-
-# res_list <- map(file_list, ~read_rds(here::here("code",
-#                                            "R Code",
-#                                            "fulloutbreak_sim",
-#                                            .x)))
 total_files <- length(file_list)
 print(total_files)
 file_list <- file_list[sample(1:total_files, 100)]
@@ -114,10 +92,9 @@ acc <- tp_acc(res_list, trials)%>%
 
 specificity <- acc$mean_percent[acc$true_infector == FALSE]
 sensitivity <- acc$mean_percent[acc$true_infector == TRUE]
-# test_summary <- vector(mode = "list", length = length(res_list))
 
 
-# calculate true values ---------------------------------------------------
+# calculate results ---------------------------------------------------
 
 
 true_val <- 3.52
@@ -140,10 +117,8 @@ for (i in 1:length(res_list)) {
 }
 
 # ME2 models run separately in primary_3_stan_template.R for computational efficiency
-# see primary_3_stan_template.R
+# see simulation_results/primary_3_stan_template.R
 res_name_suffix <- "primary_3_standraws_seed_"
-
-# list all the setting descriptors
 
 
 
@@ -206,17 +181,9 @@ setting <- list("primary_1",
                 "primary_0.3"
 )
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
 
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
 
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 total_files <- map(file_list, ~length(.x))
 print(total_files)
@@ -233,7 +200,7 @@ sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 test_summary <- vector(mode = "list", length = length(res_list))
 
 
-# calculate true values ---------------------------------------------------
+# calculate results ---------------------------------------------------
 
 true_val <- c(1, 0.24)
 test_summary <- vector(mode = "list", length = length(res_list))
@@ -263,22 +230,10 @@ write_rds(test_summary, "primary_1_0.3_or_tables.rds")
 # read in the results -----------------------------------------------------
 res_name_suffix <- list("secondary_increase_window_res_seed_")
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- list("increase window")
 
 
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
-
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
-
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
-
 
 res_list <- map(file_list, ~map(.x, ~read_rds(.x)))
 
@@ -289,7 +244,7 @@ acc <- map2(res_list, trials, ~tp_acc(.x, .y)) %>%
 specificity <- map(acc, ~.x$mean_percent[.x$true_infector==FALSE])
 sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 
-# calculate true values ---------------------------------------------------
+# calculate results ---------------------------------------------------
 
 
 true_val <- c(1.93,1.93, 1.93)
@@ -312,13 +267,10 @@ for (i in 1:length(res_list)) {
 }
 
 # ME2 models run separately in primary_3_stan_template.R for computational efficiency
-# see primary_3_stan_template.R
+# see simulation_results/primary_3_stan_template.R
 
 res_name_suffix <- "secondary_increase_window_standraws_seed_"
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 
 
 
@@ -376,24 +328,10 @@ rm(res_list)
 
 # read in the results -----------------------------------------------------
 res_name_suffix <- list("secondary_increase_density_res_seed_")
-
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- list("increase density"
 )
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
-
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
-
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 total_files <- map(file_list, ~length(.x))
 print(total_files)
@@ -437,26 +375,13 @@ rm(res_list)
 # read in the results -----------------------------------------------------
 res_name_suffix <- list("secondary_increase_clusters_res_seed_"
 )
-
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- list(
   "increase clusters"
   
 )
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
-
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
 
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 total_files <- map(file_list, ~length(.x))
 print(total_files)
@@ -472,7 +397,7 @@ sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 # test_summary <- vector(mode = "list", length = length(res_list))
 
 
-# calculate true values ---------------------------------------------------
+# calculate results ---------------------------------------------------
 
 
 true_val <- c(1.93)

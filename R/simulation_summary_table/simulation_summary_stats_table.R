@@ -1,13 +1,13 @@
 # File used to create values reported in 
 # the table "Simulation Summary Statistics for 8 Year Simulation."
-# Simulations run in 16active_8year_1.75diff_fullsims.R
+# Simulations run in primary_1.75_fullsims.R
 library(tidyverse)
 library(rstan)
 set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
 #source(here::here("code", "R Code", "tp_res_functions.R"))
-source("tp_res_functions.R")
+source(here::here("R", "tp_res_functions.R"))
 
 res_name_suffix <- "16active_8yearsim_1.75diff_fullsim_seed_"
 

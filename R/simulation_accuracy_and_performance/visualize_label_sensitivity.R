@@ -1,47 +1,52 @@
+# Produces visualizations of results when cutoff for IS label is adjusted
+# Uses results produced in summarise_label_sensitivity.R
 library(tidyverse)
 library(xtable)
 library(patchwork)
-# from 16active_8year_1.75sim_finalcalc.R
-acc_twov1 <- read_rds(here::here("code", 
-                                 "R Code", 
-                                 "16active_8year_1.75diff_acc_tablesv1.rds"))
-summary_twov1 <- read_rds(here::here("code", 
-                                     "R Code", 
-                                     "16active_8year_1.75diff_sim_or_tablesv1.rds"))
+
+acc_twov1 <- read_rds(here::here("R",
+                                 "simulation_accuracy_and_performance",
+                                 "simulation_results",
+                                 "primary_1.75_foursevenths_acc_tablesv1.rds"))
+summary_twov1 <- read_rds(here::here("R",
+                                     "simulation_accuracy_and_performance",
+                                     "simulation_results",
+                                     "primary_1.75_foursevenths_or_tablesv1.rds"))
 
 
-# from labelsens_0.4R
 
-acc_one <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_1.75diff_acc_tablesv2_0.4sens.rds"))%>%
+acc_one <- read_rds(here::here("R",
+                               "simulation_accuracy_and_performance",
+                               "simulation_results",
+                               "primary_1.75_acc_tablesv2_0.4sens.rds"))%>%
   mutate(id = 5)
-summary_one <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "16active_8year_1.75diff_sim_or_tables_0.4sens.rds"))%>%
-  mutate(id = 5)
-
-
-# from labelsens_0.5R
-
-acc_three <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_1.75diff_acc_tablesv2_0.5sens.rds"))%>%
-  mutate(id = 5)
-summary_three <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "16active_8year_1.75diff_sim_or_tables_0.5sens.rds"))%>%
+summary_one <- read_rds(here::here("R",
+                                   "simulation_accuracy_and_performance",
+                                   "simulation_results",
+                                   "primary_1.75_or_tables_0.4sens.rds"))%>%
   mutate(id = 5)
 
-# from labelsens_0.7R
 
-acc_four <- read_rds(here::here("code", 
-                               "R Code", 
-                               "16active_8year_1.75diff_acc_tablesv2_0.7sens.rds"))%>%
+acc_three <- read_rds(here::here("R",
+                                 "simulation_accuracy_and_performance",
+                                 "simulation_results",
+                               "primary_1.75_acc_tablesv2_0.5sens.rds"))%>%
   mutate(id = 5)
-summary_four <- read_rds(here::here("code", 
-                                   "R Code", 
-                                   "16active_8year_1.75diff_sim_or_tables_0.7sens.rds"))%>%
+summary_three <- read_rds(here::here("R",
+                                     "simulation_accuracy_and_performance",
+                                     "simulation_results",
+                                   "primary_1.75_or_tables_0.5sens.rds"))%>%
+  mutate(id = 5)
+
+acc_four <- read_rds(here::here("R",
+                                "simulation_accuracy_and_performance",
+                                "simulation_results",
+                               "primary_1.75_acc_tablesv2_0.7sens.rds"))%>%
+  mutate(id = 5)
+summary_four <- read_rds(here::here("R",
+                                    "simulation_accuracy_and_performance",
+                                    "simulation_results", 
+                                   "primary_1.75_or_tables_0.7sens.rds"))%>%
   mutate(id = 5)
 
 
@@ -49,12 +54,12 @@ summary_four <- read_rds(here::here("code",
 summary <-summary_twov1%>%           
   bind_rows(.id = "id") %>%
   rbind(summary_one, summary_three, summary_four) %>%
-  filter(setting != "16active_8yearsim_0.6diff")
+  filter(setting != "primary_foursevenths")
 
 acc <- acc_twov1 %>%
   bind_rows(.id = "id") %>%
   rbind(acc_one, acc_three, acc_four) %>%
-  filter(setting != "16active_8yearsim_0.6diff")
+  filter(setting != "primary_foursevenths")
 
 summary <- summary %>%
   arrange(setting) %>%
@@ -98,7 +103,7 @@ acc_graph_data <- acc_graph_data %>%
 
 
 
-acc_graph_data$setting[acc_graph_data$setting == "16active_8year_1.75diff"] <- "Default (0.6)"
+acc_graph_data$setting[acc_graph_data$setting == "primary_1.75"] <- "Default (0.6)"
 acc_graph_data$setting[acc_graph_data$setting == "16active_1.75diff_0.4"] <- "0.4"
 acc_graph_data$setting[acc_graph_data$setting == "16active_1.75diff_0.5"] <- "0.5"
 acc_graph_data$setting[acc_graph_data$setting == "16active_1.75diff_0.7"] <- "0.7"
@@ -124,11 +129,6 @@ acc_graph <- acc_graph_data %>%
 
 
 acc_graph
-
-ggsave(here::here("code", "R Code", "sensitivity_acc.pdf"), 
-       plot = acc_graph, 
-       width = 7, 
-       height = 4 )
 
 summary <- summary %>% dplyr::select(percent_coverage, percent_reject, percent_bias, mean_ci_width, type, setting)
 

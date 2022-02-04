@@ -412,8 +412,7 @@ stan_summary <- function(res, spec, sens, cluster = TRUE, true_val, shift, add, 
   
   
   if (cluster == FALSE) {
-    test_fit <- map(model_objects_test, ~stan(file =here::here("code", 
-                                                               "R Code", 
+    test_fit <- map(model_objects_test, ~stan(file =here::here("R",
                                                                "misclass_logistic_regression.stan"),
                                               data = .x,
                                               seed = 45,
