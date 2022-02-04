@@ -11,6 +11,7 @@ library(rstan)
 library(tidybayes)
 library(lubridate)
 library(SAMBA)
+library(patchwork)
 set.seed(1)
 
 # dictionaries and varfiles formed in creating_BEAST_clusters_snplevel5-12.R
@@ -378,9 +379,13 @@ dat_for_vis10 <- prob_inf_frame10 %>%
 
 
 # Analyze the data --------------------------------------------------------
-dat_for_analysis5 <- read_csv("dat_for_analysis_snp5_allshare.csv")
+dat_for_analysis5 <- read_csv(here::here("R",
+                                         "real_data_analysis",
+                                         "dat_for_analysis_snp5_allshare.csv"))
 
-dat_for_analysis10 <- read_csv("dat_for_analysis_snp10_allshare.csv")
+dat_for_analysis10 <- read_csv(here::here("R",
+                              "real_data_analysis",
+                              "dat_for_analysis_snp10_allshare.csv"))
 
 # num infection sources
 sum(dat_for_analysis5$tp_source)
@@ -599,7 +604,9 @@ hiv_count <- table_data %>%
          percent = n/total)
 
 # BEAST Tree visualizations -----------------------------------------------
-dat_for_vis10 <- read_csv(here::here("R", "dat_forvis_snp10_allshare.csv"))
+dat_for_vis10 <- read_csv(here::here("R", 
+                                    "real_data_analysis",
+                                    "dat_forvis_snp10_allshare.csv"))
 
 dict10 <-read_csv(here::here("data", "snp_10_kopanyo_cluster_dictionary.csv"))
 
@@ -808,10 +815,6 @@ test <- (tree_plot43 + hiv_status43 + tp_source43 +plot_layout(widths = c(19,1,1
   (tree_plot16 + hiv_status16 + tp_source16 + plot_layout(widths = c(19,1,1))) 
 
 
-# ggsave(here::here("code", "R Code", "tree_combined8.pdf"), plot = tree_combined8, width = 8, height = 8)
-# ggsave(here::here("code", "R Code", "tree_combined9.pdf"), plot = tree_combined9, width = 8, height = 8)
-# ggsave(here::here("code", "R Code", "test.pdf"), plot = test, width = 8, height = 8)
-
 
 # repeat but for 5
 files <- c("mcctree_snp5_lineage1_cluster6",
@@ -838,7 +841,9 @@ files <- c("mcctree_snp5_lineage1_cluster6",
 
 time_tree_list <- map(files, ~read.nexus(here::here("BEAST2", .x)))
 
-dat_for_vis5 <- read_csv(here::here("R", "dat_forvis_snp5_allshare.csv"))
+dat_for_vis5 <- read_csv(here::here("R", 
+                                    "real_data_analysis",
+                                    "dat_forvis_snp5_allshare.csv"))
 
 
 
@@ -1042,5 +1047,4 @@ full_tree_plot <- (tree_plot43 + hiv_status43 + tp_source43 +tree_plot17 + hiv_s
   (tree_plot12 + hiv_status12 + tp_source12 +tree_plot11 + hiv_status11 + tp_source11 + plot_layout(widths = c(19,1,1, 19, 1, 1))) / 
   (tree_plot9 + hiv_status9 + tp_source9 +tree_plot5 + hiv_status5 + tp_source5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) /
   (tree_plot16 + hiv_status16 + tp_source16 + tree_plot12_snp5 + hiv_status12_snp5 + tp_source12_snp5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) + plot_layout(guides = "collect")
-
 
