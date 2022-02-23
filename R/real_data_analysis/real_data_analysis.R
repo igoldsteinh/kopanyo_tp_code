@@ -12,6 +12,7 @@ library(tidybayes)
 library(lubridate)
 library(SAMBA)
 library(patchwork)
+library(ggtree)
 set.seed(1)
 
 # dictionaries and varfiles formed in creating_BEAST_clusters_snplevel5-12.R
@@ -560,10 +561,8 @@ meta_data <- read_csv2(here::here("data", meta_name)) %>%
   mutate(my_hiv = hivfinal_new - 1) %>%
   filter(!is.na(my_hiv))
 
-
 table_data <- meta_data %>%
   dplyr::select(SampleID, Lineage, genderf1, agenew, my_hiv)
-
 
 lineage_count <- table_data %>%
   group_by(Lineage) %>%
@@ -1047,4 +1046,16 @@ full_tree_plot <- (tree_plot43 + hiv_status43 + tp_source43 +tree_plot17 + hiv_s
   (tree_plot12 + hiv_status12 + tp_source12 +tree_plot11 + hiv_status11 + tp_source11 + plot_layout(widths = c(19,1,1, 19, 1, 1))) / 
   (tree_plot9 + hiv_status9 + tp_source9 +tree_plot5 + hiv_status5 + tp_source5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) /
   (tree_plot16 + hiv_status16 + tp_source16 + tree_plot12_snp5 + hiv_status12_snp5 + tp_source12_snp5 + plot_layout(widths = c(19,1,1, 19, 1, 1))) + plot_layout(guides = "collect")
+
+plain_tree <- ggtree(tree12_snp5, mrsd = unique(data12_snp5$max_date), size = 4) + 
+  ggtitle("") + 
+  theme_tree2() + 
+  theme(axis.text = element_blank(),
+        axis.title = element_text(size = 32),
+        axis.ticks.x=element_blank()) +
+  xlab("Time")
+
+ggsave("plain_tree.png", plain_tree, width = 5, height = 5)
+ggsave("full_tree_plotv2.pdf", full_tree_plot, width = 10, height = 10)
+
 
