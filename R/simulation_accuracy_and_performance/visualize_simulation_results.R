@@ -163,10 +163,10 @@ graph_summary$metric <- factor(graph_summary$metric, levels=level_list, labels=l
 graph_summary$setting[graph_summary$setting == "primary_1.75"] <- "1.75"
 graph_summary$setting[graph_summary$setting == "primary_3"] <- "3"
 graph_summary$setting[graph_summary$setting == "primary_1"] <- "1"
-graph_summary$setting[graph_summary$setting == "primary_foursevenths"] <- "4/7"
+graph_summary$setting[graph_summary$setting == "primary_foursevenths"] <- "0.57"
 graph_summary$setting[graph_summary$setting == "primary_0.3"] <- "0.3"
 
-level_list <- c("0.3", "4/7", "1", "1.75", "3")
+level_list <- c("0.3", "0.57", "1", "1.75", "3")
 
 graph_summary$setting <- as.factor(graph_summary$setting)
 graph_summary$setting <- factor(graph_summary$setting, levels = level_list)
@@ -426,10 +426,10 @@ acc_graph_data <- acc_graph_data %>%
 acc_graph_data$setting[acc_graph_data$setting == "primary_1.75"] <- "1.75"
 acc_graph_data$setting[acc_graph_data$setting == "primary_3"] <- "3"
 acc_graph_data$setting[acc_graph_data$setting == "primary_1"] <- "1"
-acc_graph_data$setting[acc_graph_data$setting == "primary_foursevenths"] <- "4/7"
+acc_graph_data$setting[acc_graph_data$setting == "primary_foursevenths"] <- "0.57"
 acc_graph_data$setting[acc_graph_data$setting == "primary_0.3"] <- "0.3"
 
-level_list <- c("0.3", "4/7", "1", "1.75", "3")
+level_list <- c("0.3", "0.57", "1", "1.75", "3")
 
 acc_graph_data$setting <- as.factor(acc_graph_data$setting)
 acc_graph_data$setting <- factor(acc_graph_data$setting, levels = level_list)

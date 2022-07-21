@@ -392,6 +392,19 @@ dat_for_analysis10 <- read_csv(here::here("R",
 sum(dat_for_analysis5$tp_source)
 sum(dat_for_analysis10$tp_source)
 
+#test how number changes with different probability cutoffs
+dat_for_analysis5 <- dat_for_analysis5 %>%
+                     mutate(lowcutoff = prob_source > 0.4,
+                            highcutoff = prob_source > 0.8)
+
+dat_for_analysis10 <- dat_for_analysis10 %>%
+                      mutate(lowcutoff = prob_source > 0.4, 
+                             highcutoff = prob_source > 0.8)
+
+sum(dat_for_analysis5$lowcutoff)
+sum(dat_for_analysis5$highcutoff)
+sum(dat_for_analysis10$lowcutoff)
+sum(dat_for_analysis10$highcutoff)
 # num clusters, mean counts, mean tree heights
 summary10 <- dict10 %>%
   summarise(
