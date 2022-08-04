@@ -50,6 +50,18 @@ time_tree_list <- map(files, ~read.nexus(here::here( "BEAST2", .x)))
 dict5 <- read_csv(here::here("data", "kopanyo_cluster_dictionary_filtered.csv")) %>%
   filter(!is.na(mean_posterior_clock))
 
+
+# make blank list of cluster names ----------------------------------------
+# snp5_median_tmrca_blank <- dict5 %>% 
+#                            dplyr::select(cluster_name) %>%
+#                            mutate(snp_level = 5,
+#                                   median_tmrca = NA)
+# 
+# write_csv(snp5_median_tmrca_blank, here::here("data", "snp5_median_tmrca.csv"))
+
+# continue ----------------------------------------------------------------
+
+
 cluster_key <- read_csv(here::here("data", "snp5_sequence_cluster_crosswalk.csv"))
 
 
@@ -193,6 +205,16 @@ dat_for_vis5 <- prob_inf_frame5 %>%
 # SNP10 infection source label creation
 # read in mcctrees --------------------------------------------------------
 dict10 <-read_csv(here::here("data", "snp_10_kopanyo_cluster_dictionary.csv"))
+
+# make blank list of cluster names ----------------------------------------
+# snp10_median_tmrca_blank <- dict10 %>% 
+#   dplyr::select(cluster_name) %>%
+#   mutate(snp_level = 10,
+#          median_tmrca = NA)
+# 
+# write_csv(snp10_median_tmrca_blank, here::here("data", "snp10_median_tmrca.csv"))
+
+# continue ----------------------------------------------------------------
 
 mcc_name <- str_c("mcctree", dict10$file_name, sep = "_")
 
