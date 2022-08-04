@@ -4,7 +4,7 @@ library(tidyverse)
 source(here::here("R", "tp_res_functions.R"))
 # primary setting 3 -------------------------------------------------------
 one_mil <- read_rds(here::here("R", 
-                               "MonteCarlo_OR_estimation",
+                               "monte_carlo_OR_estimation",
                                "simulation_results",
                                "summaryodds_3diff_1milv2.rds"))
 
@@ -26,7 +26,7 @@ onemil_delta[1] + 2*onemil_delta[2]
 
 
 o3_diff <- read_rds(here::here("R", 
-                               "MonteCarlo_OR_estimation",
+                               "monte_carlo_OR_estimation",
                                "simulation_results", 
                                "summaryodds_0.3diff.rds"))
 
@@ -47,7 +47,7 @@ o3_delta[1] + 2*o3_delta[2]
 
 
 o6_diff <- read_rds(here::here("R", 
-                               "MonteCarlo_OR_estimation",
+                               "monte_carlo_OR_estimation",
                                "simulation_results", 
                                "summaryodds_0.6diff.rds"))
 
@@ -67,7 +67,7 @@ o6_delta[1] + 2*o6_delta[2]
 # primary setting 1.75 ----------------------------------------------------
 
 onesevenfive_diff <- read_rds(here::here("R", 
-                                         "MonteCarlo_OR_estimation",
+                                         "monte_carlo_OR_estimation",
                                          "simulation_results", 
                                          "summaryodds_1.75diff_1mil.rds"))
 

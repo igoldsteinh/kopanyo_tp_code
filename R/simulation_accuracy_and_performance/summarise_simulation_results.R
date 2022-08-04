@@ -45,7 +45,7 @@ test_summary <- vector(mode = "list", length = length(res_list))
 # calculate results ---------------------------------------------------
 
 
-true_val <- c(1.93,0.52)
+true_val <- c(1.94,0.52)
 test_summary <- vector(mode = "list", length = length(res_list))
 for (i in 1:length(res_list)) {
   res <- res_list[[i]]
@@ -97,7 +97,7 @@ sensitivity <- acc$mean_percent[acc$true_infector == TRUE]
 # calculate results ---------------------------------------------------
 
 
-true_val <- 3.52
+true_val <- 3.53
 test_summary <- vector(mode = "list", length = 1)
 for (i in 1:length(res_list)) {
   res <- res_list
@@ -202,7 +202,7 @@ test_summary <- vector(mode = "list", length = length(res_list))
 
 # calculate results ---------------------------------------------------
 
-true_val <- c(1, 0.24)
+true_val <- c(1, 0.25)
 test_summary <- vector(mode = "list", length = length(res_list))
 for (i in 1:length(res_list)) {
   res <- res_list[[i]]
@@ -247,7 +247,7 @@ sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 # calculate results ---------------------------------------------------
 
 
-true_val <- c(1.93,1.93, 1.93)
+true_val <- c(1.94,1.94, 1.94)
 test_summary <- vector(mode = "list", length = length(res_list))
 for (i in 1:length(res_list)) {
   res <- res_list[[i]]
@@ -400,7 +400,7 @@ sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
 # calculate results ---------------------------------------------------
 
 
-true_val <- c(1.93)
+true_val <- c(1.94)
 test_summary <- vector(mode = "list", length = length(res_list))
 for (i in 1:length(res_list)) {
   res <- res_list[[i]]

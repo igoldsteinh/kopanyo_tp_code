@@ -1,0 +1,131 @@
+# this file summarises pipeline performance
+# across many simulation settings
+# NOTE: THESE FILES ARE IN ODDS ESTIMATION 2 FOR REASONS BEYOND UNDERSTANDING
+library(tidyverse)
+library(rstan)
+set.seed(1234)
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+ #source(here::here("code", "R Code", "tp_res_functions.R"))
+source("tp_res_functions.R")
+
+
+# read in the results -----------------------------------------------------
+res_name_suffix <- list("16active_8year_7yrsamp_1.75diff_res_seed_")
+
+# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
+#                         "fulloutbreak_highsample_sim_res_seed_")
+# list all the setting descriptors
+setting <- list("7yr samp")
+
+# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
+
+# file_list <- map(res_name_suffix, ~list.files(address, 
+#                         pattern = .x))
+
+file_list <- map(res_name_suffix, ~list.files(pattern = .x))
+                 
+# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
+#                                             "R Code", 
+#                                             "fulloutbreak_sim", 
+#                                             .x))))
+
+print(file_list[[1]])
+
+ res_list <- map(file_list, ~map(.x, ~read_rds(.x)))
+
+trials <- map(res_list, length)
+acc <- map2(res_list, trials, ~tp_acc(.x, .y)) %>%
+       map2(setting, ~.x %>% mutate(setting = .y))
+
+specificity <- map(acc, ~.x$mean_percent[.x$true_infector==FALSE])
+sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
+# test_summary <- vector(mode = "list", length = length(res_list))
+
+glm_tables <- map(res_list, glm_tables, 1.94) %>%
+              map2(setting, ~.x %>% mutate(setting = .y))
+
+prob_inf_list <- map(res_list, ~.x %>% map(pluck, "final_inf_frame"))
+
+count_labels <- map(prob_inf_list, count_2x2) %>%
+  map2(setting, ~.x %>% mutate(setting = .y))
+# calculate true values ---------------------------------------------------
+
+
+true_val <- c(1.94,1.94, 1.94)
+test_summary <- vector(mode = "list", length = length(res_list))
+for (i in 1:length(res_list)) {
+  res <- res_list[[i]]
+  num <- trials[i]
+  spec <- specificity[[i]]
+  sens <- sensitivity[[i]]
+  test_summary[[i]] <- final_summary(res,
+                                     spec,
+                                     sens,
+                                     num,
+                                     cluster = TRUE,
+                                     true_val[i],
+                                     stan = FALSE) %>%
+                       mutate(setting = setting[[i]],
+                              true_val = true_val[i])
+
+}
+
+
+res_name_suffix <- "7yrsamp_standraws_seed_"
+
+# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
+#                         "fulloutbreak_highsample_sim_res_seed_")
+# list all the setting descriptors
+
+
+
+file_list <- list.files(pattern = res_name_suffix)
+
+draw_list <- map(file_list, ~read_csv(.x))
+
+draws <- draw_list %>%
+  bind_rows(.id = "sim")
+
+
+misclass_results <- draws %>%
+  mutate(OR = exp(beta1),
+         OR_Low = exp(beta1.lower),
+         OR_High = exp(beta1.upper))
+
+
+stan_res_summary <- misclass_results %>%
+  mutate(Coverage = true_val[1] >= OR_Low & true_val[1] <= OR_High,
+         reject_low = OR_Low > 1,
+         reject_high = OR_High < 1,
+         reject = !(OR_Low < 1 & 1 < OR_High),
+         bias = OR - true_val[1],
+         sq_error = (OR - true_val[1])^2,
+         CI_width = OR_High - OR_Low,
+         diff = abs(OR - true_val[1])) %>%
+  summarise(
+    mean_OR = mean(OR),
+    mean_lb = mean(OR_Low),
+    mean_ub = mean(OR_High),
+    mean_diff = mean(diff),
+    mean_bias = mean(bias),
+    sq_MSE = sqrt(mean(sq_error)),
+    percent_reject = mean(reject),
+    mean_ci_width = mean(CI_width),
+    percent_reject_low = mean(reject_low),
+    percent_reject_high = mean(reject_high),
+    percent_coverage = mean(Coverage),
+    type = "Stan",
+    mean_num_samples = unique(test_summary[[1]]$mean_num_samples)
+  ) %>%
+  mutate(num_trials = trials,
+         setting = setting,
+         true_val = true_val[1])
+
+final_summary <- rbind(test_summary[[1]], stan_res_summary)
+
+write_rds(acc, "7yrsamp_1.75diff_acc_tablesv1.rds")
+write_rds(glm_tables, "7yrsamp_1.75diff_glmtables.rds")
+write_rds(count_labels, "7yrsamp_1.75diff_2x2tables.rds")
+
+write_rds(final_summary, "7yrsamp_1.75diff_sim_or_tablesv1.rds")
