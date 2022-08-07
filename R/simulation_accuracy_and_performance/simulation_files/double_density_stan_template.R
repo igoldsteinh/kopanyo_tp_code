@@ -1,4 +1,4 @@
-# running stan on 3diff
+# running TP+ME2 on increase density simulation
 
 library(tidyverse)
 library(rstan)
@@ -6,7 +6,6 @@ library(tidybayes)
 set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
-#source(here::here("code", "R Code", "tp_res_functions.R"))
 source("tp_res_functions.R")
 
 args <- commandArgs(trailingOnly=TRUE)
@@ -19,28 +18,18 @@ set.seed(as.numeric(seed))
 # read in the results -----------------------------------------------------
 res_name_suffix <- "32active_8yearsim_1.75diff_res_seed_"
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
 # list all the setting descriptors
 setting <- "double_density"
 
 
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
 
 
 file_list <- list.files(pattern = res_name_suffix)
-# file_list <- list.files(path = address, pattern = res_name_suffix)
-
-# res_list <- map(file_list, ~read_rds(here::here("code",
-#                                            "R Code",
-#                                            "fulloutbreak_sim",
-#                                            .x)))
 
 
 res_list <- map(file_list,  ~read_rds(.x))
 
-# test_summary <- vector(mode = "list", length = length(res_list))
 prob_inf <- map(res_list, pluck, 3) %>%
   map(~.x %>%
         mutate(numeric_hiv = as.numeric(current.in == "A")))

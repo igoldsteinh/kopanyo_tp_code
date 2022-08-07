@@ -355,4 +355,4 @@ names(results) <- c("model_tp",
                     "sampling_proportion",
                     "sample_tree")
 
-write_rds(results, str_c("secondary_increase_clusters_res_seed_", seed, ".rds", ""))
+write_rds(results, str_c("16active_8yearsim_1.75diff_dubclusters_res_seed_", seed, ".rds", ""))

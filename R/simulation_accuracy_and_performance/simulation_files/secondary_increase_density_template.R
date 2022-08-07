@@ -359,5 +359,5 @@ names(results) <- c("model_tp",
                     "sampling_proportion",
                     "sample_tree")
 
-write_rds(results, str_c("secondary_increase_density_res_seed_", seed, ".rds", ""))
+write_rds(results, str_c("32active_8yearsim_1.75diff_res_seed_", seed, ".rds", ""))
 

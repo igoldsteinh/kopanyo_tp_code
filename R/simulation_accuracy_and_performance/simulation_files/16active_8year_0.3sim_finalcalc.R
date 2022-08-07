@@ -1,39 +1,26 @@
-# this file summarises pipeline performance
-# across many simulation settings
+# summaryise primary 0.3 simulation setting results
 library(tidyverse)
 library(rstan)
 set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
- #source(here::here("code", "R Code", "tp_res_functions.R"))
 source("tp_res_functions.R")
 
 
 # read in the results -----------------------------------------------------
 res_name_suffix <- "16active_8yearsim_0.3diff_res_seed_"
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- "16active_8year_0.3diff"
                 
               
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
 
 
 file_list <- list.files(pattern = res_name_suffix)
-# file_list <- list.files(path = address, pattern = res_name_suffix)
-
- # res_list <- map(file_list, ~read_rds(here::here("code",
- #                                            "R Code",
- #                                            "fulloutbreak_sim",
- #                                            .x)))
 total_files <- length(file_list)
 print(total_files)
 file_list <- file_list[sample(1:total_files, 100)]
 
-# file_list <- read_rds(here::here("code", "R Code", "0.3sim_file_list.rds"))
 seed_list <- map(file_list, ~as.numeric(tail(str_extract_all(.x, pattern = "\\d+")[[1]], 1))) %>%
             unlist()
 print(seed_list)
@@ -47,7 +34,6 @@ acc <- tp_acc(res_list, trials)%>%
 
 specificity <- acc$mean_percent[acc$true_infector == FALSE]
 sensitivity <- acc$mean_percent[acc$true_infector == TRUE]
-# test_summary <- vector(mode = "list", length = length(res_list))
 
 
 # calculate true values ---------------------------------------------------
@@ -73,10 +59,6 @@ for (i in 1:length(res_name_suffix)) {
 
 
 res_name_suffix <- "8year_0.3diff_standraws_seed_"
-
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 
 
 

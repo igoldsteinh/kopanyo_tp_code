@@ -1,33 +1,19 @@
-# this file summarises pipeline performance
-# across many simulation settings
+# summarise secondary quadruple sampling density simulation results
 library(tidyverse)
 library(rstan)
 set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
- #source(here::here("code", "R Code", "tp_res_functions.R"))
 source("tp_res_functions.R")
 
 
 # read in the results -----------------------------------------------------
 res_name_suffix <- list("secondary_quadruple_density_res_seed_")
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
-# list all the setting descriptors
 setting <- list("quadruple_density")
-
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
 
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
                  
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 total_files <- map(file_list, ~length(.x))
 print(total_files)

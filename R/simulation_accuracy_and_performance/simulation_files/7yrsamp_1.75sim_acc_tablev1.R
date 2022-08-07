@@ -1,34 +1,21 @@
-# this file summarises pipeline performance
-# across many simulation settings
-# NOTE: THESE FILES ARE IN ODDS ESTIMATION 2 FOR REASONS BEYOND UNDERSTANDING
+# summarise secondary increase sampling window
 library(tidyverse)
 library(rstan)
 set.seed(1234)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
- #source(here::here("code", "R Code", "tp_res_functions.R"))
 source("tp_res_functions.R")
 
 
 # read in the results -----------------------------------------------------
 res_name_suffix <- list("16active_8year_7yrsamp_1.75diff_res_seed_")
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
 # list all the setting descriptors
 setting <- list("7yr samp")
 
-# address <- "C:/Users/fiddl/Documents/kopanyo-archived-phylo/code/R Code/fulloutbreak_sim"
-
-# file_list <- map(res_name_suffix, ~list.files(address, 
-#                         pattern = .x))
 
 file_list <- map(res_name_suffix, ~list.files(pattern = .x))
                  
-# # res_list <- map(file_list, ~map(.x, ~read_rds(here::here("code", 
-#                                             "R Code", 
-#                                             "fulloutbreak_sim", 
-#                                             .x))))
 
 print(file_list[[1]])
 
@@ -40,7 +27,6 @@ acc <- map2(res_list, trials, ~tp_acc(.x, .y)) %>%
 
 specificity <- map(acc, ~.x$mean_percent[.x$true_infector==FALSE])
 sensitivity <- map(acc, ~.x$mean_percent[.x$true_infector==TRUE])
-# test_summary <- vector(mode = "list", length = length(res_list))
 
 glm_tables <- map(res_list, glm_tables, 1.94) %>%
               map2(setting, ~.x %>% mutate(setting = .y))
@@ -74,8 +60,6 @@ for (i in 1:length(res_list)) {
 
 res_name_suffix <- "7yrsamp_standraws_seed_"
 
-# res_name_suffix <- list("fulloutbreak_sim_res_seed_",
-#                         "fulloutbreak_highsample_sim_res_seed_")
 # list all the setting descriptors
 
 
