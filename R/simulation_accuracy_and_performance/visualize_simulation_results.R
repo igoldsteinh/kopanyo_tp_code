@@ -237,6 +237,7 @@ cov_plot <- graph_summary %>%
             xlab("") +
             ylab("Coverage") +
             ggtitle("Coverage") +
+            ylim(c(0,1)) +
             scale_shape_manual(values = c(0, 1, 2, 3, 4)) 
 cov_plot
 
@@ -368,6 +369,7 @@ altcov_plot <- altgraph_summary %>%
   xlab("") +
   ylab("Coverage") +
   ggtitle("Coverage") +
+  ylim(c(0,1)) +
   scale_shape_manual(values = c(3, 1, 2, 4, 5)) 
 altcov_plot
 
