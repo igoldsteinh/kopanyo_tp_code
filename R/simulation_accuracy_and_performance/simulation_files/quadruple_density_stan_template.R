@@ -17,12 +17,12 @@ print(seed)
 set.seed(as.numeric(seed))
 
 # read in the results -----------------------------------------------------
-res_name_suffix <- "16active_8yearsim_1.75diff_res_seed_"
+res_name_suffix <- "secondary_quadruple_density_res_seed_"
 
 # res_name_suffix <- list("fulloutbreak_sim_res_seed_",
 #                         "fulloutbreak_highsample_sim_res_seed_")
 # list all the setting descriptors
-setting <- "16active_8year_1.75diff"
+setting <- "quadruple_density"
 
 
 
@@ -49,8 +49,8 @@ prob_inf_single <- prob_inf[[seed]]
 model_objects_test <- list(N = dim(prob_inf_single)[1],
                                          z = prob_inf_single$tp_infector,
                                          x = prob_inf_single$numeric_hiv,
-                                         specificity = .97,
-                                         sensitivity = .27)
+                                         specificity = .98,
+                                         sensitivity = .56)
 
 
 
@@ -73,5 +73,5 @@ draws <- test_fit %>%
   mean_qi() %>%
   mutate(seed = seed_number)
 
-write_csv(draws, str_c("8year_1.75diff_standraws_seed_", seed, ".csv", ""))
+write_csv(draws, str_c("quadruple_density_standraws_seed_", seed, ".csv", ""))
 

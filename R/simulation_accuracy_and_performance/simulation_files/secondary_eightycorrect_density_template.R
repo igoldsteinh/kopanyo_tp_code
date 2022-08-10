@@ -188,34 +188,16 @@ random_samp_one <- map2(filtered_samp_one, num_samples_one, sample_n)
 filtered_samp_two <- map2(filtered_samp_two, random_samp_one, ~.x %>%
                             filter(!(hosts.ID %in% .y$hosts.ID)))
 
-random_samp_two <- vector(mode = "list", length = num_sims)
-for (i in 1:num_sims) {
-  if (dim(filtered_samp_two[[i]])[1] >= num_samples_two[[i]]) {
-    random_samp_two[[i]] <- sample_n(filtered_samp_two[[i]], num_samples_two[[i]])
-  }
-  else {
-    random_samp_two[[i]] <- filtered_samp_two[[i]]
-  }
-}
 
-  
+random_samp_two <- map2(filtered_samp_two, num_samples_two, sample_n)
+
 filtered_samp_three <- map2(filtered_samp_three, random_samp_one, ~.x %>%
                               filter(!(hosts.ID %in% .y$hosts.ID))) %>%
   map2(random_samp_two, ~.x %>%
          filter(!(hosts.ID %in% .y$hosts.ID)))
 
+random_samp_three <- map2(filtered_samp_three, num_samples_three, sample_n)
 
-random_samp_three <- vector(mode = "list", length = num_sims)
-
-for (i in 1:num_sims) {
-  if (dim(filtered_samp_three[[i]])[1] >= num_samples_three[[i]]) {
-    random_samp_three[[i]] <- sample_n(filtered_samp_three[[i]], num_samples_three[[i]])
-  }
-  else {
-    random_samp_three[[i]] <- filtered_samp_three[[i]]
-  }
-}
-  
 
 random_samp <- pmap(list(random_samp_one, random_samp_two, random_samp_three), rbind)
 

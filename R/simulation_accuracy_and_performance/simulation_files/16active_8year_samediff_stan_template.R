@@ -17,12 +17,12 @@ print(seed)
 set.seed(as.numeric(seed))
 
 # read in the results -----------------------------------------------------
-res_name_suffix <- "16active_8yearsim_1.75diff_res_seed_"
+res_name_suffix <- "16active_8yearsim_samediff_res_seed_"
 
 # res_name_suffix <- list("fulloutbreak_sim_res_seed_",
 #                         "fulloutbreak_highsample_sim_res_seed_")
 # list all the setting descriptors
-setting <- "16active_8year_1.75diff"
+setting <- "16active_8year_samediff"
 
 
 
@@ -73,5 +73,5 @@ draws <- test_fit %>%
   mean_qi() %>%
   mutate(seed = seed_number)
 
-write_csv(draws, str_c("8year_1.75diff_standraws_seed_", seed, ".csv", ""))
+write_csv(draws, str_c("16active_8year_samediff_standraws_seed_", seed, ".csv", ""))
 
